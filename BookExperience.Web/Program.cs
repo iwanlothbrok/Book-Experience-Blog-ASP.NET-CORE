@@ -1,6 +1,6 @@
-using BookExperience.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using BookExperience.Infrastrucutre.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
