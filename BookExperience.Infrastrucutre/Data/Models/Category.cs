@@ -13,11 +13,3 @@
         public string Name { get; set; } = null!;
     }
 }
-//Adventure stories.
-//Classics.
-//Crime.
-//Fairy tales, fables, and folk tales.
-//Fantasy.
-//Historical fiction.
-//Horror.
-//Humour and satire.
