@@ -1,5 +1,6 @@
 ﻿namespace BookExperience.Core.Extensions
 {
+    using BookExperience.Infrastructure.Seeding;
     using BookExperience.Infrastrucutre.Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
