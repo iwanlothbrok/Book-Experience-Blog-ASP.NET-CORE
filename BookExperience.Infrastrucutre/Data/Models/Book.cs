@@ -39,6 +39,11 @@
         public string? Language { get; set; }
 
 		/// <summary>
+		/// photo of the book
+		/// </summary>
+		public byte[] BookPhoto { get; set; } = null!;
+
+		/// <summary>
 		/// book pages
 		/// </summary>
 		public int Pages{ get; set; }

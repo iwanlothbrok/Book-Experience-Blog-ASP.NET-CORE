@@ -16,5 +16,8 @@
         public const int AuthorsFirstNameMaxLength = 100;
         public const int AuthorsLastNameMaxLength = 100;
 
+
+        //web
+        public const string GlobalMessageKey = "GlobalMessage";
     }
 }

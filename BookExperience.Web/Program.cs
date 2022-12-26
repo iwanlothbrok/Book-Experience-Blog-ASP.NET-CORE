@@ -1,9 +1,12 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using BookExperience.Infrastrucutre.Data;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using BookExperience.Core.Extensions;
 using BookExperience.Core.ModelBinders;
+using BookExperience.Core.Services.Author;
+using BookExperience.Core.Services.Book;
+using BookExperience.Core.Services.Publisher;
+using BookExperience.Infrastrucutre.Data;
+using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,11 +30,15 @@ builder.Services.AddAuthentication()
         options.AppSecret = builder.Configuration.GetValue<string>("Facebook:AppSecret");
     });
 
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IPublisherService, PublisherService>();
+
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
         options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
-        options.ModelBinderProviders.Insert(1, new BookExperience.Core.ModelBinders.DateTimeModelBinderProvider("dd.mm.yyyy"));
+        options.ModelBinderProviders.Insert(1, new DateTimeModelBinderProvider("dd.mm.yyyy"));
         options.ModelBinderProviders.Insert(2, new DoubleModelBinderProvider());
     });
 

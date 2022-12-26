@@ -23,9 +23,9 @@
                 data.Database.OpenConnection();
                 try
                 {
-                    data.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Categories ON");
+                    data.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Genres ON");
                     data.SaveChanges();
-                    data.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Categories OFF");
+                    data.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Genres OFF");
                 }
                 finally
                 {

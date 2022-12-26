@@ -1,0 +1,62 @@
+﻿@using BookExperience.Core.Models
+@model BookFormModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" placeholder="BMW, Mercedes, etc...">
+                <span asp-validation-for="Title" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorFirstName"></label>
+                <input asp-for="AuthorFirstName" class="form-control" placeholder="640D, S-Class, etc...">
+                <span asp-validation-for="AuthorFirstName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorLastName"></label>
+                <textarea asp-for="AuthorLastName" rows="4" class="form-control" placeholder="This is the perfect car..."></textarea>
+                <span asp-validation-for="AuthorLastName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pages"></label>
+                <input asp-for="Pages" class="form-control" placeholder="Set your price for one day...">
+                <span asp-validation-for="Pages" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublisherName"></label>
+                <input type="file" id="files" asp-for="PublisherName" />
+                <span asp-validation-for="PublisherName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo"></label>
+                <input asp-for="Photo" class="form-control">
+                <span asp-validation-for="Photo" class="small text-danger"></span>
+            </div> 
+            <div class="form-group">
+                <label asp-for="Language"></label>
+                <input asp-for="Language" class="form-control">
+                <span asp-validation-for="Language" class="small text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="GenresId"></label>
+                <select asp-for="GenresId" class="form-control">
+                    @foreach (var category in Model.Genres)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="GenresId" class="small text-danger"></span>
+            </div>
+            <input class="btn btn-primary mt-3" type="submit" value="Save" />
+        </form>
+    </div>
+</div> 
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

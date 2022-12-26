@@ -1,4 +1,5 @@
 ﻿@inject SignInManager<IdentityUser> SignInManager
+@using static BookExperience.Infrastrucutre.Data.DataConstants;
 
 <!DOCTYPE html>
 <!--
@@ -88,6 +89,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			</div>
 			<!-- /.content-header -->
 			<!-- Main content -->
+			@if (TempData.ContainsKey(GlobalMessageKey))
+				{
+					 <div class="alert alert-success text-center" role="alert">
+					 @TempData[GlobalMessageKey]
+            </div>
+				 }
 			<div class="content ml-6">
 				<div class="container-fluid">
 					@RenderBody()
