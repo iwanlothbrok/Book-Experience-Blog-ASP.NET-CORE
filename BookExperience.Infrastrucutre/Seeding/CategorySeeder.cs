@@ -8,7 +8,7 @@
     {
         public void Seed(ApplicationDbContext data, IServiceProvider serviceProvider)
         {
-            if (!data.Categories.Any(d => d.Id == 1))
+            if (!data.Genres.Any(d => d.Id == 1))
             {
                 var category1 = AddCategoryInDb(data, 1, "Adventure stories");
                 var category2 = AddCategoryInDb(data, 2, "Classics");
@@ -34,16 +34,16 @@
             }
         }
 
-        private Category AddCategoryInDb
+        private Genres AddCategoryInDb
             (ApplicationDbContext data, int id, string name)
         {
-            Category category = new Category()
+            Genres category = new Genres()
             {
                 Id = id,
                 Name = name,
             };
 
-            data.Categories.Add(category);
+            data.Genres.Add(category);
 
             return category;
         }

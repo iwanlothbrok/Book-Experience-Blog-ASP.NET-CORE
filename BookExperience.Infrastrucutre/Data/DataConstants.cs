@@ -2,6 +2,19 @@
 {
     public static class DataConstants
     {
-        public const int CategoryMaxLength = 50; 
+        //genres
+        public const int GenresMaxLength = 50;
+
+        //publisher
+        public const int PublisherNameMaxLength = 50;
+
+        //books
+        public const int BookTitleNameMaxLength = 100;
+        public const int LanguageNameMaxLength = 50;
+
+        //authors
+        public const int AuthorsFirstNameMaxLength = 100;
+        public const int AuthorsLastNameMaxLength = 100;
+
     }
 }

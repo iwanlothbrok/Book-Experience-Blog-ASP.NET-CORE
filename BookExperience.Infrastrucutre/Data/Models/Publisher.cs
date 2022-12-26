@@ -2,14 +2,21 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static BookExperience.Infrastrucutre.Data.DataConstants;
-    public class Category
+
+    public class Publisher
     {
         public int Id { get; set; }
 
         /// <summary>
-        /// category name
+        /// publisher company
         /// </summary>
-        [StringLength(maximumLength: CategoryMaxLength)]
+        [Required]
+        [StringLength(maximumLength: PublisherNameMaxLength)]
         public string Name { get; set; } = null!;
+
+        /// <summary>
+        /// books of this publisher
+        /// </summary>
+        public List<Book>? Books { get; set; }
     }
 }
