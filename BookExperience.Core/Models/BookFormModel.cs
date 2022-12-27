@@ -9,20 +9,26 @@
     {
         [Required]
         [StringLength(maximumLength: BookTitleNameMaxLength)]
+        [Display(Name = "Book Title")]
         public string Title { get; set; } = null!;
 
         [Required]
         [StringLength(maximumLength: AuthorsLastNameMaxLength)]
+        [Display(Name = "Author first name")]
         public string AuthorFirstName { get; set; } = null!;
 
         [Required]
         [StringLength(maximumLength: AuthorsLastNameMaxLength)]
+        [Display(Name = "Author last name")]
+
         public string AuthorLastName { get; set; } = null!;
 
-        public byte[]? Photo{ get; set; } = null!;
+        public byte[]? Photo { get; set; } = null!;
 
         [Required]
         [StringLength(maximumLength: PublisherNameMaxLength)]
+        [Display(Name = "Publisher name")]
+
         public string PublisherName { get; set; } = null!;
 
         public IEnumerable<Genres>? Genres { get; set; }
@@ -42,6 +48,8 @@
         /// <summary>
         /// if the book is recomended
         /// </summary>
-        public bool IsRecomended { get; set; }
+        [Display(Name = "Do you recommend this book?")]
+        [Required]
+        public bool IsRecommended { get; set; }
     }
 }

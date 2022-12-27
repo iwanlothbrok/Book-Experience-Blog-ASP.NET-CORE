@@ -8,40 +8,44 @@
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label asp-for="Title"></label>
-                <input asp-for="Title" class="form-control" placeholder="BMW, Mercedes, etc...">
+                <input asp-for="Title" class="form-control" placeholder="Harrt Potter, Godfather and etc...">
                 <span asp-validation-for="Title" class="small text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AuthorFirstName"></label>
-                <input asp-for="AuthorFirstName" class="form-control" placeholder="640D, S-Class, etc...">
+                <input asp-for="AuthorFirstName" class="form-control" placeholder="Robet, Dan and etc...">
                 <span asp-validation-for="AuthorFirstName" class="small text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AuthorLastName"></label>
-                <textarea asp-for="AuthorLastName" rows="4" class="form-control" placeholder="This is the perfect car..."></textarea>
+                <input asp-for="AuthorLastName" class="form-control" placeholder="Green, Brown and etc...">
                 <span asp-validation-for="AuthorLastName" class="small text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Pages"></label>
-                <input asp-for="Pages" class="form-control" placeholder="Set your price for one day...">
+                <input asp-for="Pages" class="form-control" placeholder="340 pages">
                 <span asp-validation-for="Pages" class="small text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PublisherName"></label>
-                <input type="file" id="files" asp-for="PublisherName" />
-                <span asp-validation-for="PublisherName" class="small text-danger"></span>
+                <label asp-for="Photo"></label>
+                <input type="file" id="files" asp-for="Photo" />
+                <span asp-validation-for="Photo" class="small text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Photo"></label>
-                <input asp-for="Photo" class="form-control">
-                <span asp-validation-for="Photo" class="small text-danger"></span>
+                <label asp-for="PublisherName"></label>
+                <input asp-for="PublisherName" class="form-control" placeholder="Libri, Helikon and etc...">
+                <span asp-validation-for="PublisherName" class="small text-danger"></span>
             </div> 
             <div class="form-group">
                 <label asp-for="Language"></label>
-                <input asp-for="Language" class="form-control">
+                <input asp-for="Language" class="form-control" placeholder="English, Bulgarian and etc...">
                 <span asp-validation-for="Language" class="small text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="IsRecommended"></label>
+                <input type="checkbox" asp-for="IsRecommended" class="form-control">
+                <span asp-validation-for="IsRecommended" class="small text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="GenresId"></label>
                 <select asp-for="GenresId" class="form-control">

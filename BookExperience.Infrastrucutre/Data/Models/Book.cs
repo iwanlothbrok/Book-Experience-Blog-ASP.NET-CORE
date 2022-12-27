@@ -46,11 +46,15 @@
 		/// <summary>
 		/// book pages
 		/// </summary>
-		public int Pages{ get; set; }
+		public int? Pages{ get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		public string UserId { get; set; } = null!;
 		/// <summary>
 		/// if the book is recomended
 		/// </summary>
-		public bool IsRecomended { get; set; }
+		public bool IsRecommended { get; set; }
 	}
 }

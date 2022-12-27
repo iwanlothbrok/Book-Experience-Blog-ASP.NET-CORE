@@ -1,5 +1,8 @@
 ﻿namespace BookExperience.Core.Services.Book
 {
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using BookExperience.Core.Models;
     using BookExperience.Core.Services.Author;
     using BookExperience.Core.Services.Publisher;
     using BookExperience.Infrastrucutre.Data;
@@ -12,11 +15,13 @@
         private readonly ApplicationDbContext data;
         private readonly IAuthorService authorService;
         private readonly IPublisherService publisherService;
-        public BookService(ApplicationDbContext data, IAuthorService authorService, IPublisherService publisherService)
+        private readonly IMapper mapper;
+        public BookService(ApplicationDbContext data, IAuthorService authorService, IPublisherService publisherService, IMapper mapper)
         {
             this.data = data;
             this.authorService = authorService;
             this.publisherService = publisherService;
+            this.mapper = mapper;
         }
 
         public IEnumerable<Genres> AllGenres()
@@ -29,7 +34,19 @@
                 })
                 .ToList();
 
-        public async Task<int> Create(string Title, string AuthorFirstName, string AuthorLastName, string PublisherName, IList<IFormFile> bookPhoto, string Language, int GenresId, int Pages, bool IsRecomended)
+
+        public IEnumerable<MineBooksModel> ByUser(string userId)
+       => GetBooks(this.data
+           .Books
+           .Where(c => c.UserId == userId))
+           .ToList();
+
+        public IEnumerable<MineBooksModel> GetBooks(IQueryable<Book> bookQuery)
+      => bookQuery
+          .ProjectTo<MineBooksModel>(this.mapper.ConfigurationProvider)
+          .ToList();
+
+        public async Task<int> Create(string Title, string AuthorFirstName, string AuthorLastName, string PublisherName, IList<IFormFile> bookPhoto, string Language, int GenresId, int Pages, bool IsRecomended, string userId)
         {
             byte[] photo = new byte[8000];
             foreach (var item in bookPhoto)
@@ -75,7 +92,8 @@
                 PublisherId = publisherId,
                 Language = Language,
                 Pages = Pages,
-                IsRecomended = IsRecomended,
+                IsRecommended = IsRecomended,
+                UserId = userId,
             };
 
             await this.data.Books.AddAsync(bookData);

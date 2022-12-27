@@ -4,7 +4,6 @@ using BookExperience.Core.Services.Author;
 using BookExperience.Core.Services.Book;
 using BookExperience.Core.Services.Publisher;
 using BookExperience.Infrastrucutre.Data;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
