@@ -3,5 +3,6 @@
 	public interface IPublisherService
 	{
 		int Create(string name);
-	}
+        int DidPublisherExists(string name);
+    }
 }

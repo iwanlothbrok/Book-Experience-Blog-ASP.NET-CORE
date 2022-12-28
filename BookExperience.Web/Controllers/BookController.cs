@@ -3,7 +3,6 @@
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Models;
     using BookExperience.Core.Services.Book;
-    using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using static BookExperience.Infrastrucutre.Data.DataConstants;
 
@@ -43,9 +42,9 @@
 
             await this.bookService.Create(book.Title, book.AuthorFirstName, book.AuthorLastName, book.PublisherName, Photo, book.Language, book.GenresId, book.Pages, book.IsRecommended, User.GetId());
 
-            TempData[GlobalMessageKey] = "Thank you for adding your car!";
+            TempData[GlobalMessageKey] = "Thank you for adding this book!";
 
-            return RedirectToAction(nameof(Add));
+            return RedirectToAction(nameof(Mine));
         }
 
         [HttpGet]

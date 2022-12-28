@@ -7,7 +7,7 @@
         public int Id { get; set; }
 
         /// <summary>
-        /// category name
+        /// genre name
         /// </summary>
         [StringLength(maximumLength: GenresMaxLength)]
         public string Name { get; set; } = null!;
