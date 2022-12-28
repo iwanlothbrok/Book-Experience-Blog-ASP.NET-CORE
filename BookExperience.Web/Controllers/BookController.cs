@@ -56,5 +56,17 @@
 
             return View(myBooks);
         }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            bool findBook = this.bookService.Delete(id);
+
+            if (findBook == true)
+            {
+                TempData[GlobalMessageKey] = "You delete booking successfully!";
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

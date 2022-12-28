@@ -6,6 +6,7 @@
 
     public interface IBookService
     {
+        bool Delete(int id);
         IEnumerable<Genres> AllGenres();
         IEnumerable<MineBooksModel> ByUser(string userId);
         IEnumerable<MineBooksModel> GetBooks(IQueryable<Book> bookQuery);

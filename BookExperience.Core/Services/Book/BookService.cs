@@ -101,5 +101,24 @@
 
             return bookData.Id;
         }
+        public bool Delete(int id)
+        {
+            Book? bookData = this.data.Books.Find(id);
+
+            bool isValid = true;
+
+            if (bookData == null)
+            {
+                isValid = false;
+            }
+
+            if (isValid == true)
+            {
+                this.data.Books.Remove(bookData);
+                this.data.SaveChanges();
+            }
+
+            return isValid;
+        }
     }
 }
