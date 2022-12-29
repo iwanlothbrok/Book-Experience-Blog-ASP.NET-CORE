@@ -23,7 +23,7 @@
 
         public string AuthorLastName { get; set; } = null!;
 
-        public byte[]? Photo { get; set; } = null!;
+        public byte[]? BookPhoto { get; set; } = null!;
 
         [Required]
         [StringLength(maximumLength: PublisherNameMaxLength)]

@@ -23,21 +23,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="card col-1 border-1">
+			<div class="card col-2 border-10">
 				<p style="font-size:15px;"><u>@book.Title</u></p>
 				<p>Author: <b>@book.AuthorFirstName @book.AuthorLastName</b></p>
 				<p>Category: <b>@book.GenresName</b></p>
 				<p>Pages: <b>@book.Pages</b></p>
 				<p>Publisher for this language: <b>@book.PublisherName for @book.Language</b></p>
 				<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
-			</div>
-			<div class="form-inline">
-
-				@if (this.User.Identity.IsAuthenticated && book.UserId == this.User.GetId())
-				{
 					<a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
-				}
+					<a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning">Edit</a>
 			</div>
+
 		}
 	}
 </div>

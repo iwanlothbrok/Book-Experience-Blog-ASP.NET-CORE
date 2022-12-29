@@ -1,5 +1,6 @@
 ﻿namespace BookExperience.Web.Controllers
 {
+    using AutoMapper;
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Models;
     using BookExperience.Core.Services.Book;
@@ -9,9 +10,11 @@
     public class BookController : BaseController
     {
         private readonly IBookService bookService;
-        public BookController(IBookService bookService)
+        private readonly IMapper mapper;
+        public BookController(IBookService bookService, IMapper mapper)
         {
             this.bookService = bookService;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -24,9 +27,9 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(BookFormModel book, List<IFormFile> Photo)
+        public async Task<IActionResult> Add(BookFormModel book, List<IFormFile> BookPhoto)
         {
-            if (Photo == null || Photo.Count == 0)
+            if (BookPhoto == null || BookPhoto.Count == 0)
             {
                 book.Genres = this.bookService.AllGenres();
 
@@ -40,9 +43,55 @@
                 return View(book);
             }
 
-            await this.bookService.Create(book.Title, book.AuthorFirstName, book.AuthorLastName, book.PublisherName, Photo, book.Language, book.GenresId, book.Pages, book.IsRecommended, User.GetId());
+            await this.bookService.Create(book.Title, book.AuthorFirstName, book.AuthorLastName, book.PublisherName, BookPhoto, book.Language, book.GenresId, book.Pages, book.IsRecommended, User.GetId());
 
             TempData[GlobalMessageKey] = "Thank you for adding this book!";
+
+            return RedirectToAction(nameof(Mine));
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            BookDetailsModel? book = this.bookService.Details(id);
+
+            if (book == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            BookFormModel bookForm = this.mapper.Map<BookFormModel>(book);
+            bookForm.Genres = this.bookService.AllGenres();
+
+            return View(bookForm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, BookFormModel book, List<IFormFile> BookPhoto)
+        {
+            if (BookPhoto == null || BookPhoto.Count == 0)
+            {
+                book.Genres = this.bookService.AllGenres();
+
+                return View(book);
+            }
+
+            if (this.ModelState.IsValid == false)
+            {
+                book.Genres = this.bookService.AllGenres();
+
+                return View(book);
+            }
+
+            await this.bookService.Edit(
+                id,
+                book.Title,
+                BookPhoto,
+                book.Language,
+                book.GenresId,
+                book.Pages,
+                book.IsRecommended);
+
+            TempData[GlobalMessageKey] = "You edit this book successfully!";
 
             return RedirectToAction(nameof(Mine));
         }
@@ -63,10 +112,10 @@
 
             if (findBook == true)
             {
-                TempData[GlobalMessageKey] = "You delete booking successfully!";
+                TempData[GlobalMessageKey] = "You delete this book successfully!";
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(Mine));
         }
     }
 }

@@ -34,7 +34,19 @@
                 })
                 .ToList();
 
+        public BookFormModel? GetBookById(int id)
+        => this.data
+        .Books
+         .Where(c => c.Id == id)
+         .ProjectTo<BookFormModel>(this.mapper.ConfigurationProvider)
+         .FirstOrDefault();
 
+        public BookDetailsModel? Details(int id)
+               => this.data
+               .Books
+                .Where(c => c.Id == id)
+                .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefault();
         public IEnumerable<MineBooksModel> ByUser(string userId)
        => GetBooks(this.data
            .Books
@@ -46,7 +58,65 @@
           .ProjectTo<MineBooksModel>(this.mapper.ConfigurationProvider)
           .ToList();
 
-        public async Task<int> Create(string Title, string AuthorFirstName, string AuthorLastName, string PublisherName, IList<IFormFile> bookPhoto, string Language, int GenresId, int Pages, bool IsRecomended, string userId)
+        public bool Delete(int id)
+        {
+            Book? bookData = this.data.Books.Find(id);
+
+            bool isValid = true;
+
+            if (bookData == null)
+            {
+                isValid = false;
+            }
+
+            if (isValid == true)
+            {
+                this.data.Books.Remove(bookData);
+                this.data.SaveChanges();
+            }
+
+            return isValid;
+        }
+
+        public async Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended)
+        {
+            Book? book = await this.data.Books.FindAsync(id);
+
+            if (book == null)
+            {
+                return 0;
+            }
+            byte[] photo = new byte[8000];
+            foreach (var item in bookPhoto)
+            {
+                if (item.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        await item.CopyToAsync(stream);
+                        photo = stream.ToArray();
+                    }
+                }
+            }
+
+            if (bookPhoto.Count <= 0)
+            {
+                return 0;
+            }
+
+            book.Title = Title;
+            book.BookPhoto = photo;
+            book.Language = Language;
+            book.GenresId = GenresId;
+            book.Pages = Pages;
+            book.IsRecommended = IsRecomended;
+
+            this.data.SaveChanges();
+
+            return book.Id;
+        }
+
+        public async Task<int> Create(string Title, string AuthorFirstName, string AuthorLastName, string PublisherName, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended, string userId)
         {
             byte[] photo = new byte[8000];
             foreach (var item in bookPhoto)
@@ -101,24 +171,6 @@
 
             return bookData.Id;
         }
-        public bool Delete(int id)
-        {
-            Book? bookData = this.data.Books.Find(id);
 
-            bool isValid = true;
-
-            if (bookData == null)
-            {
-                isValid = false;
-            }
-
-            if (isValid == true)
-            {
-                this.data.Books.Remove(bookData);
-                this.data.SaveChanges();
-            }
-
-            return isValid;
-        }
     }
 }

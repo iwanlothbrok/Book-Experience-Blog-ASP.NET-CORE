@@ -10,6 +10,9 @@
         {
             //mapping for books
             this.CreateMap<Book, MineBooksModel>();
+            this.CreateMap<Book, BookFormModel>();
+            this.CreateMap<Book, BookDetailsModel>();
+            this.CreateMap<BookDetailsModel, BookFormModel>();
         }
     }
 }

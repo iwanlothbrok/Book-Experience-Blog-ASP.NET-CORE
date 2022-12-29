@@ -1,0 +1,67 @@
+﻿@using BookExperience.Core.Models
+@model BookFormModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">@ViewBag.Title</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" placeholder="Harrt Potter, Godfather and etc...">
+                <span asp-validation-for="Title" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorFirstName"></label>
+                <input asp-for="AuthorFirstName" class="form-control" placeholder="Robet, Dan and etc...">
+                <span asp-validation-for="AuthorFirstName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorLastName"></label>
+                <input asp-for="AuthorLastName" class="form-control" placeholder="Green, Brown and etc...">
+                <span asp-validation-for="AuthorLastName" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pages"></label>
+                <input asp-for="Pages" class="form-control" placeholder="340 pages">
+                <span asp-validation-for="Pages" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookPhoto"></label>
+                <input type="file" id="files" asp-for="BookPhoto" />
+                <span asp-validation-for="BookPhoto" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublisherName"></label>
+                <input asp-for="PublisherName" class="form-control" placeholder="Libri, Helikon and etc...">
+                <span asp-validation-for="PublisherName" class="small text-danger"></span>
+            </div> 
+            <div class="form-group">
+                <label asp-for="Language"></label>
+                <input asp-for="Language" class="form-control" placeholder="English, Bulgarian and etc...">
+                <span asp-validation-for="Language" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsRecommended"></label>
+                <input type="checkbox" asp-for="IsRecommended" class="form-control">
+                <span asp-validation-for="IsRecommended" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GenresId"></label>
+                <select asp-for="GenresId" class="form-control">
+                    @foreach (var category in Model.Genres)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="GenresId" class="small text-danger"></span>
+            </div>
+            <input class="btn btn-primary mt-3" type="submit" value="Save" />
+        </form>
+    </div>
+</div> 
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
