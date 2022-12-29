@@ -12,7 +12,8 @@
         BookFormModel? GetBookById(int id);
         IEnumerable<MineBooksModel> ByUser(string userId);
         IEnumerable<MineBooksModel> GetBooks(IQueryable<Book> bookQuery);
-        Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended);
+        Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, 
+            bool IsRecomended, string authorFName, string authorLName, string publisherName);
         Task<int> Create(string Title, string AuthorFirstName, string AuthorLastName, string PublisherName,
         IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended, string userId);
     }

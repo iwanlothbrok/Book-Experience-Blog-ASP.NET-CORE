@@ -78,7 +78,7 @@
             return isValid;
         }
 
-        public async Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended)
+        public async Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended,string authorFName,string authorLName, string publisherName)
         {
             Book? book = await this.data.Books.FindAsync(id);
 
@@ -97,6 +97,28 @@
                         photo = stream.ToArray();
                     }
                 }
+            }
+            int authorId = 0;
+            int publisherId = 0;
+
+            if (authorFName is not null && authorLName is not null)
+            {
+                authorId = authorService.Create(authorFName, authorLName);
+            }
+
+            if (publisherName is not null)
+            {
+                publisherId = publisherService.Create(publisherName);
+            }
+
+            if (bookPhoto.Count <= 0)
+            {
+                return 0;
+            }
+
+            if (authorId is 0 || publisherId is 0)
+            {
+                return 0;
             }
 
             if (bookPhoto.Count <= 0)

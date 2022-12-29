@@ -89,7 +89,11 @@
                 book.Language,
                 book.GenresId,
                 book.Pages,
-                book.IsRecommended);
+                book.IsRecommended,
+                book.AuthorFirstName,
+                book.AuthorLastName,
+                book.PublisherName);
+
 
             TempData[GlobalMessageKey] = "You edit this book successfully!";
 
