@@ -32,6 +32,8 @@
         public string PublisherName { get; set; } = null!;
 
         public IEnumerable<Genres>? Genres { get; set; }
+        [Display(Name = "Genre")]
+
         public int GenresId { get; set; }
 
         /// <summary>

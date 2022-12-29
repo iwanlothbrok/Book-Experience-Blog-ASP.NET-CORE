@@ -30,8 +30,9 @@
 				<p>Pages: <b>@book.Pages</b></p>
 				<p>Publisher for this language: <b>@book.PublisherName for @book.Language</b></p>
 				<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
-					<a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
-					<a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning">Edit</a>
+				<a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
+				<a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning">Edit</a>
+				<a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-info">Details</a>
 			</div>
 
 		}

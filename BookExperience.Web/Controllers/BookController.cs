@@ -4,6 +4,7 @@
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Models;
     using BookExperience.Core.Services.Book;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using static BookExperience.Infrastrucutre.Data.DataConstants;
 
@@ -63,6 +64,22 @@
             bookForm.Genres = this.bookService.AllGenres();
 
             return View(bookForm);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Details(int id)
+        {
+            BookDetailsModel car = this.bookService.Details(id);
+
+            if (this.ModelState.IsValid == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            BookDetailsModel carForm = this.mapper.Map<BookDetailsModel>(car);
+
+            return View(carForm);
         }
 
         [HttpPost]
