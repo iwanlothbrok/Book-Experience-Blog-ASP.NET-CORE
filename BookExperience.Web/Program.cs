@@ -3,6 +3,7 @@ using BookExperience.Core.ModelBinders;
 using BookExperience.Core.Services.Author;
 using BookExperience.Core.Services.Book;
 using BookExperience.Core.Services.Publisher;
+using BookExperience.Core.Services.Statistics;
 using BookExperience.Infrastrucutre.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,7 @@ builder.Services.AddAuthentication()
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
+builder.Services.AddScoped<IStatisticsService, StatisticsService>();
 
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
