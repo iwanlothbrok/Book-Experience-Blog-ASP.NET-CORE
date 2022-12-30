@@ -34,25 +34,25 @@
         <div class="chart">
             <div class="operating-systems">
                 <span class="ios-os">
-                    <span></span>iOS
+                    <span></span>Genres
                 </span>
                 <span class="windows-os">
-                    <span></span>Windows
+                    <span></span>Pages
                 </span>
                 <span class="android-os">
-                    <span></span>Android
+                    <span></span>Books
                 </span>
             </div>
 
             <!--    Place the stats numbers here    -->
             <div class="android-stats">
-                453.67<span></span>
+                <p class="col-md-4 text-center" id="total-pages"></p>
             </div>
             <div class="ios-stats">
-                <span></span>453.67
+                <p class="col-md-4 text-center" id="total-pages"></p>
             </div>
             <div class="windows-stats">
-                <span></span>453.67
+                <p class="col-md-4 text-center" id="total-pages"></p>
             </div>
             <!--   Place the SVG here     -->
             <svg width="563" height="204" class="data-chart" viewBox="0 0 563 204" xmlns="http://www.w3.org/2000/svg">
@@ -71,13 +71,6 @@
     <button class="btn btn-primary" id="statistics-button">Show Statistics</button>
 </div>
 
-<div class="jumbotron d-none" id="statistics">
-    <div class="row">
-        <h2 class="col-md-4 text-center" id="total-books"></h2>
-        <h2 class="col-md-4 text-center" id="total-genres"></h2>
-        <h2 class="col-md-4 text-center" id="total-pages"></h2>
-    </div>
-</div>
 
 @section Scripts {
     <script>

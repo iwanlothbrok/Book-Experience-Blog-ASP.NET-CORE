@@ -1,14 +1,17 @@
-﻿namespace BookExperience.Web.Areas.Identity.Pages.Account
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+#nullable disable
+
+namespace BookExperience.Areas.Identity.Pages.Account
 {
+
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.Extensions.Logging;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using static BookExperience.Infrastrucutre.Data.DataConstants;
+
 
     public class LoginModel : PageModel
     {
@@ -96,7 +99,13 @@
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+
             returnUrl ??= Url.Content("~/");
+
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                return RedirectToPage("Home", "Error", new { area = "/" });
+            }
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
@@ -104,10 +113,12 @@
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    TempData[GlobalMessageKey] = "Welcome to \"Booking Experience!\"";
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -125,6 +136,7 @@
                     return Page();
                 }
             }
+
 
             // If we got this far, something failed, redisplay form
             return Page();
