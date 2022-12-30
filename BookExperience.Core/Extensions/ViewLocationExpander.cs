@@ -21,7 +21,7 @@
         }
 
         public void PopulateValues(ViewLocationExpanderContext context)
-         {
+        {
             context.Values["customviewlocation"] = nameof(ViewLocationExpander);
         }
     }

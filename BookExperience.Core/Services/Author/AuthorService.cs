@@ -4,7 +4,7 @@
     using BookExperience.Infrastrucutre.Data.Models;
 
     public class AuthorService : IAuthorService
-	{
+    {
         private readonly ApplicationDbContext data;
         public AuthorService(ApplicationDbContext data)
         {

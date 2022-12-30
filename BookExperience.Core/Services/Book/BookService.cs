@@ -78,7 +78,7 @@
             return isValid;
         }
 
-        public async Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended,string authorFName,string authorLName, string publisherName)
+        public async Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended, string authorFName, string authorLName, string publisherName)
         {
             Book? book = await this.data.Books.FindAsync(id);
 

@@ -1,10 +1,10 @@
 ﻿namespace BookExperience.Web.Controllers
 {
-	using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc;
 
-	public class StatisticsController : Controller
-	{
-		public IActionResult All()
-			=> View();
-	}
+    public class StatisticsController : Controller
+    {
+        public IActionResult All()
+            => View();
+    }
 }

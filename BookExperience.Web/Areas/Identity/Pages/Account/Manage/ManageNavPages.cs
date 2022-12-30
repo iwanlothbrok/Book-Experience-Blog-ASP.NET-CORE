@@ -1,7 +1,7 @@
 ﻿namespace BookExperience.Web.Areas.Identity.Pages.Account.Manage
 {
-    using System;
     using Microsoft.AspNetCore.Mvc.Rendering;
+    using System;
 
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
