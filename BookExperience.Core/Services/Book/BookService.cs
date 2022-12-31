@@ -2,13 +2,17 @@
 {
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using BookExperience.Core.Extensions;
     using BookExperience.Core.Models.Books;
     using BookExperience.Core.Services.Author;
     using BookExperience.Core.Services.Publisher;
     using BookExperience.Infrastrucutre.Data;
     using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
+    using System.Security.Cryptography.X509Certificates;
 
     public class BookService : IBookService
     {
@@ -57,6 +61,14 @@
       => bookQuery
           .ProjectTo<MineBooksModel>(this.mapper.ConfigurationProvider)
           .ToList();
+
+        public IEnumerable<string> AllTitles()
+    => this.data
+            .Books
+            .Select(c => c.Title)
+            .Distinct()
+            .OrderBy(br => br)
+            .ToList();
 
         public bool Delete(int id)
         {
@@ -192,6 +204,38 @@
             await this.data.SaveChangesAsync();
 
             return bookData.Id;
+        }
+        
+        public BookQueryModel All(string title, string searchTerm, BookSorting sorting, int currentPage, int booksPerPage)
+        {
+            var booksQuery = this.data.Books
+                                            .Where(p => p.Language != null || p.Language == null);
+
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                booksQuery = booksQuery.Where(c => c.Title == title);
+            }
+
+            booksQuery = sorting switch
+            {
+                BookSorting.Pages => booksQuery.OrderByDescending(c => c.Pages),
+                BookSorting.Title or _ => booksQuery.OrderByDescending(c => c.Title)
+            };
+
+            int totalBooks = booksQuery.Count();
+
+            var books = GetBooks((IQueryable<Book>)booksQuery
+                 .Skip((currentPage - 1) * booksPerPage)
+                 .Take(booksPerPage)
+                 .ToList()); // CHANGE IT IEnumerable
+
+            return new BookQueryModel
+            {
+                TotalBooks = totalBooks,
+                CurrentPage = currentPage,
+                BooksPerPage = booksPerPage,
+                Books = books
+            };
         }
     }
 }

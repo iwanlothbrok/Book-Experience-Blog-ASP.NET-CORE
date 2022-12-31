@@ -50,6 +50,29 @@
 
             return RedirectToAction(nameof(Mine));
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult All([FromQuery] AllBooksQueryModel query)
+        {
+            BookQueryModel queryResult = this.bookService.All(
+                 query.Title,
+                 query.SearchTerm,
+                 query.Sorting,
+                 query.CurrentPage,
+                 AllBooksQueryModel.BooksPerPage);
+
+            IEnumerable<string>? bookTitles = this.bookService
+                .AllTitles()
+                .ToList();
+
+            query.Titles = bookTitles;
+            query.TotalBooks = queryResult.TotalBooks;
+            query.Books = queryResult.Books;
+
+            return View(query);
+        }
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
