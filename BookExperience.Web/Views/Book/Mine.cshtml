@@ -1,8 +1,23 @@
-﻿@using BookExperience.Core.Extensions
-@using BookExperience.Core.Models
-@model IEnumerable<MineBooksModel>
+﻿@model IEnumerable<MineBooksModel>
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@if (Model.Count() > 0)
+{
+	<div class="row">
+		<div class="col-12 text-center">
+			<button class="btn btn-primary" id="statistics-button">Show Statistics</button>
+		</div>
+	</div>
+
+	<div class="jumbotron d-none" id="statistics">
+		<div class="row">
+			<h2 class="col-md-4 text-center" id="total-books"></h2>
+			<h2 class="col-md-4 text-center" id="total-genres"></h2>
+			<h2 class="col-md-4 text-center" id="total-pages"></h2>
+		</div>
+	</div>
+}
+<div class="mb-5"></div>
 
 <div class="row">
 
@@ -38,34 +53,19 @@
 		}
 	}
 </div>
+
 @if (Model.Count() == 0)
 {
-	<h1>There are no books!</h1>
+	<h1 class="text-center">There are no books!</h1>
 }
-
-<div class="mb-5"></div>
-
-<div class="row">
-	<div class="col-12 text-center">
-		<button class="btn btn-primary" id="statistics-button">Show Statistics</button>
-	</div>
-</div>
-
-<div class="jumbotron d-none" id="statistics">
-	<div class="row">
-		<h2 class="col-md-4 text-center" id="total-books"></h2>
-		<h2 class="col-md-4 text-center" id="total-genres"></h2>
-		<h2 class="col-md-4 text-center" id="total-pages"></h2>
-	</div>
-</div>
 
 @section Scripts {
 	<script>
 		$('#statistics-button').on('click', ev => {
 			$.get('/api/statistics', (data) => {
-				$('#total-books').text(data.totalBooksReaded + " Cars");
-				$('#total-genres').text(data.totalGenresReaded + " Users");
-				$('#total-pages').text(data.totalPagesReaded + " Rents");
+				$('#total-books').text(data.totalBooksReaded + " Books");
+				$('#total-genres').text(data.totalGenresReaded + " Genres");
+				$('#total-pages').text(data.totalPagesReaded + " Pages");
 
 				$('#statistics').removeClass('d-none');
 				$('#statistics-button').hide();

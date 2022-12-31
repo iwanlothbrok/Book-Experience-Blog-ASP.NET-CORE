@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using BookExperience.Core.Extensions;
-    using BookExperience.Core.Models;
+    using BookExperience.Core.Models.Books;
     using BookExperience.Core.Services.Book;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿namespace BookExperience.Core.Models
+﻿namespace BookExperience.Core.Models.Books
 {
     using BookExperience.Infrastrucutre.Data.Models;
     using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿namespace BookExperience.Core.Services.Book
 {
-    using BookExperience.Core.Models;
+    using BookExperience.Core.Models.Books;
     using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Http;
 

@@ -1,7 +1,7 @@
 ﻿namespace BookExperience.Core.Extensions
 {
     using AutoMapper;
-    using BookExperience.Core.Models;
+    using BookExperience.Core.Models.Books;
     using BookExperience.Infrastrucutre.Data.Models;
 
     public class MappingProfile : Profile

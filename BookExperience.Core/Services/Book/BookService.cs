@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
-    using BookExperience.Core.Models;
+    using BookExperience.Core.Models.Books;
     using BookExperience.Core.Services.Author;
     using BookExperience.Core.Services.Publisher;
     using BookExperience.Infrastrucutre.Data;
