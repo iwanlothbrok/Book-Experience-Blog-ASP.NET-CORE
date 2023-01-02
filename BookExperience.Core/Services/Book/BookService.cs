@@ -224,10 +224,10 @@
 
             int totalBooks = booksQuery.Count();
 
-            var books = GetBooks((IQueryable<Book>)booksQuery
+            var books = GetBooks(booksQuery
                  .Skip((currentPage - 1) * booksPerPage)
                  .Take(booksPerPage)
-                 .ToList()); // CHANGE IT IEnumerable
+                 .AsQueryable()); // CHANGE IT IEnumerable
 
             return new BookQueryModel
             {

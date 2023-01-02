@@ -1,4 +1,4 @@
-﻿@model BookFormModel
+﻿@model IEnumerable<MineBooksModel>
 
 @{
     ViewData["Title"] = "My books";
@@ -6,6 +6,3 @@
 
 <partial name="_BooksPartialView" model="@Model" />
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
