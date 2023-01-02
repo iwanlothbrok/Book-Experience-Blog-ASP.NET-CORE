@@ -9,10 +9,7 @@
     using BookExperience.Infrastrucutre.Data;
     using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
-    using System.Security.Cryptography.X509Certificates;
 
     public class BookService : IBookService
     {

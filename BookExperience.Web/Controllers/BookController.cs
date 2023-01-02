@@ -148,6 +148,16 @@
                 .ToList();
 
             return View(myBooks);
+        } 
+        [HttpGet]
+        public IActionResult Recomended()
+        {
+            BookQueryModel myBooks = this.bookService
+                .All(null, null, BookSorting.Title, 1, 10000);
+
+            List<MineBooksModel>? books = myBooks.Books.Where(r => r.IsRecommended).ToList();
+
+            return View(books);
         }
         [HttpGet]
         public IActionResult Delete(int id)
