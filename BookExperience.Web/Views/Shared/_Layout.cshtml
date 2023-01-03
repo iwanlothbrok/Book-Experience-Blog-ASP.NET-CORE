@@ -17,12 +17,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css"/>
 	<!-- Theme style -->
 	<link rel="stylesheet" href="~/css/adminlte.min.css"/>
+
+	<link rel="stylesheet" href="~/css/dropdown.css"/>
 	<!-- Title-->
 	<title>@ViewData["Title"] - Booking Experience </title/>
 	<!-- Toastr-->
 	<link rel="stylesheet" href="~/plugins/toastr/toastr.min.css" />
 	<!-- Favicon-->
-	 <link rel="icon" type="image/x-icon" href="~/img/CarRent.png">
+	 <link rel="icon" type="image/x-icon" href="~/img/Book.png">
 	 
 	@await RenderSectionAsync("Head",false)
 </head>
@@ -43,21 +45,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</li>
 				<li class="nav-item">
 						 <a class="nav-link" asp-controller="Book" asp-action="Add">Add Book<i class="nav-link"></i></a>
+				</li>				
+				</ul>
+
+				<div class="dropdown">
+				  <button class="dropbtn">Books</button>
+				  <div class="dropdown-content">
+						 <a class="nav-link" asp-area="" asp-controller="Book" asp-action="All">All Books<i class="nav-link"></i></a>
+						 <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Mine">My Books<i class="nav-link"></i></a>
+				  </div>
+				</div>
+			}
+			@if (SignInManager.IsSignedIn(User) == false)
+			{
+				<ul class="navbar-nav">
+					<li class="nav-item">
+					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 				</li>
 				<li class="nav-item">
-						 <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Mine">My Books<i class="nav-link"></i></a>
+					<a href="/" class="nav-link">Home</a>					
 				</li>
-				
+				<li class="nav-item">
+						 <a class="nav-link" asp-area="" asp-controller="Book" asp-action="All">All Books<i class="nav-link"></i></a>
+				</li>
 				</ul>
 			}
-			<ul class="navbar-nav">
-			<li class="nav-item">
-						 <a class="nav-link" asp-area="" asp-controller="Book" asp-action="All">All books<i class="nav-link"></i></a>
-				</li>
-				<li class="nav-item">
-						 <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Recomended">Recomended<i class="nav-link"></i></a>
-				</li>
-			</ul>
 		
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
