@@ -4,7 +4,6 @@
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Models.Books;
     using BookExperience.Core.Services.Book;
-    using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using static BookExperience.Infrastrucutre.Data.DataConstants;
@@ -75,6 +74,23 @@
         }
 
         [HttpGet]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Details(int id)
+        {
+            BookDetailsModel book = this.bookService.Details(id);
+
+            if (this.ModelState.IsValid == false)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            BookDetailsModel bookForm = this.mapper.Map<BookDetailsModel>(book);
+
+            return View(bookForm);
+        }
+
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             BookDetailsModel? book = this.bookService.Details(id);
@@ -90,22 +106,6 @@
 
             BookFormModel bookForm = this.mapper.Map<BookFormModel>(book);
             bookForm.Genres = this.bookService.AllGenres();
-
-            return View(bookForm);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Details(int id)
-        {
-            BookDetailsModel book = this.bookService.Details(id);
-
-            if (this.ModelState.IsValid == false)
-            {
-                return RedirectToAction("Error", "Home");
-            }
-
-            BookDetailsModel bookForm = this.mapper.Map<BookDetailsModel>(book);
 
             return View(bookForm);
         }
@@ -159,16 +159,7 @@
 
             return View(myBooks);
         }
-        [HttpGet]
-        public IActionResult Recomended()
-        {
-            BookQueryModel myBooks = this.bookService
-                .All(null, null, BookSorting.Title, 1, 10000);
-
-            List<MineBooksModel>? books = myBooks.Books.Where(r => r.IsRecommended).ToList();
-
-            return View(books);
-        }
+        
         [HttpGet]
         public IActionResult Delete(int id)
         {

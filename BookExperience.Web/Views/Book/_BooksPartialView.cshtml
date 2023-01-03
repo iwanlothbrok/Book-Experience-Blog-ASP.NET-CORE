@@ -5,60 +5,63 @@
 <div class="mb-5"></div>
 
 <div class="row">
-		@foreach (var book in Model)
-		{
-			var base64 = Convert.ToBase64String(book.BookPhoto);
-			var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+	@foreach (var book in Model)
+	{
+		var base64 = Convert.ToBase64String(book.BookPhoto);
+		var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-			<div class="col-md-4">
-				<div class="card mb-3">
-					<img src="@imgSrc " style="width: 25rem">
-					<div class="card-body text-center">
-						<h5 class="card-title text-center">@book.Title by @book.AuthorFirstName @book.AuthorLastName (@book.GenresName)</h5>
-					</div>
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img src="@imgSrc " style="width: 25rem">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center">@book.Title by @book.AuthorFirstName @book.AuthorLastName (@book.GenresName)</h5>
 				</div>
 			</div>
-			<div class="card col-2 border-10">
-				<p style="font-size:15px;"><u>@book.Title</u></p>
-				<p>Author: <b>@book.AuthorFirstName @book.AuthorLastName</b></p>
-				<p>Category: <b>@book.GenresName</b></p>
-				<p>Pages: <b>@book.Pages</b></p>
-				<p>Publisher for this language: <b>@book.PublisherName for @book.Language</b></p>
-				<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
-				<a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
-				<a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning">Edit</a>
-				<a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-info">Details</a>
-			</div>
-		}
+		</div>
+		<div class="card col-2 border-10">
+			<p style="font-size:15px;"><u>@book.Title</u></p>
+			<p>Author: <b>@book.AuthorFirstName @book.AuthorLastName</b></p>
+			<p>Category: <b>@book.GenresName</b></p>
+			<p>Pages: <b>@book.Pages</b></p>
+			<p>Publisher for this language: <b>@book.PublisherName for @book.Language</b></p>
+			<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
+			<a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
+			<a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning">Edit</a>
+			<a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-info">Details</a>
+		</div>
+	}
 </div>
 
 @if (Model.Count() == 0)
 {
 	<h1 class="text-center">There are no books!</h1>
 }
-<div class="mb-5"></div>
 
-<div class="row">
-	<div class="col-12 text-center">
-		<button class="btn btn-primary" id="statistics-button">Show Statistics</button>
-	</div>
-</div>
+@if (SignInManager.IsSignedIn(User))
+{
+	<div class="mb-5"></div>
 
-<div class="jumbotron d-none" id="statistics">
 	<div class="row">
-		<h2 class="col-md-4 text-center" id="total-books"></h2>
-		<h2 class="col-md-4 text-center" id="total-genres"></h2>
-		<h2 class="col-md-4 text-center" id="total-pages"></h2>
+		<div class="col-12 text-center">
+			<button class="btn btn-primary" id="statistics-button">Show Statistics</button>
+		</div>
 	</div>
-</div>
 
+	<div class="jumbotron d-none" id="statistics">
+		<div class="row">
+			<h2 class="col-md-4 text-center" id="total-books"></h2>
+			<h2 class="col-md-4 text-center" id="total-pages"></h2>
+			<h2 class="col-md-4 text-center" id="total-genres"></h2>
+		</div>
+	</div>
+}
 @section Scripts {
 	<script>
 		$('#statistics-button').on('click', ev => {
 			$.get('/api/statistics', (data) => {
-				$('#total-books').text(data.totalBooksReaded + " Cars");
-				$('#total-genres').text(data.totalGenresReaded + " Users");
-				$('#total-pages').text(data.totalPagesReaded + " Rents");
+				$('#total-books').text(data.TotalPagesReaded + " Cars");
+				$('#total-pages').text(data.TotalBooksReaded + " Users");
+				$('#total-genres').text(data.TotalGenresReaded + " Rents");
 				$('#statistics').removeClass('d-none');
 				$('#statistics-button').hide();
 			});
@@ -66,8 +69,8 @@
 	</script>
 }
 
-	@*<script>
+	<script>
 		function myFunction() {
 			confirm("Are you sure you want to remove this book?");
 		}
-	</script>*@
+	</script>

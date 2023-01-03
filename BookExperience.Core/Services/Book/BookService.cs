@@ -202,7 +202,7 @@
 
             return bookData.Id;
         }
-        
+
         public BookQueryModel All(string title, string searchTerm, BookSorting sorting, int currentPage, int booksPerPage)
         {
             var booksQuery = this.data.Books
@@ -216,6 +216,7 @@
             booksQuery = sorting switch
             {
                 BookSorting.Pages => booksQuery.OrderByDescending(c => c.Pages),
+                BookSorting.Recomended => booksQuery.Where(c => c.IsRecommended == true),
                 BookSorting.Title or _ => booksQuery.OrderByDescending(c => c.Title)
             };
 
@@ -224,7 +225,7 @@
             var books = GetBooks(booksQuery
                  .Skip((currentPage - 1) * booksPerPage)
                  .Take(booksPerPage)
-                 .AsQueryable()); // CHANGE IT IEnumerable
+                 .AsQueryable());
 
             return new BookQueryModel
             {
