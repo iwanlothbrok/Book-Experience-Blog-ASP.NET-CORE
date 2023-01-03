@@ -11,5 +11,6 @@
         public string AuthorLastName { get; set; } = null!;
         public int Pages { get; set; }
         public bool IsRecommended { get; set; }
+        public string UserId { get; set; } = null!;
     }
 }

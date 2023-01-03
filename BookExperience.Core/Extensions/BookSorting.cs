@@ -3,7 +3,7 @@
 	public enum BookSorting
 	{
         Title = 0,
-        AuthorsName = 1,
-        Pages = 2
+        Pages = 1,
+        Recomended = 2
 	}
 }

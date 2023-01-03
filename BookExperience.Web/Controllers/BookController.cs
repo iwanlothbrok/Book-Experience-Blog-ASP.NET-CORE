@@ -4,6 +4,7 @@
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Models.Books;
     using BookExperience.Core.Services.Book;
+    using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using static BookExperience.Infrastrucutre.Data.DataConstants;
@@ -77,7 +78,11 @@
         public IActionResult Edit(int id)
         {
             BookDetailsModel? book = this.bookService.Details(id);
-
+            string userId = User.GetId();
+            if (book.UserId != userId)
+            {
+                return RedirectToAction("Error", "Home");
+            }
             if (book == null)
             {
                 return RedirectToAction("Error", "Home");
@@ -93,16 +98,16 @@
         [AllowAnonymous]
         public IActionResult Details(int id)
         {
-            BookDetailsModel car = this.bookService.Details(id);
+            BookDetailsModel book = this.bookService.Details(id);
 
             if (this.ModelState.IsValid == false)
             {
                 return RedirectToAction("Error", "Home");
             }
 
-            BookDetailsModel carForm = this.mapper.Map<BookDetailsModel>(car);
+            BookDetailsModel bookForm = this.mapper.Map<BookDetailsModel>(book);
 
-            return View(carForm);
+            return View(bookForm);
         }
 
         [HttpPost]
@@ -113,6 +118,11 @@
                 book.Genres = this.bookService.AllGenres();
 
                 return View(book);
+            }
+            string userId = User.GetId();
+            if (book.UserId != userId)
+            {
+                return RedirectToAction("Error", "Home");
             }
 
             if (this.ModelState.IsValid == false)
@@ -148,7 +158,7 @@
                 .ToList();
 
             return View(myBooks);
-        } 
+        }
         [HttpGet]
         public IActionResult Recomended()
         {
@@ -162,6 +172,17 @@
         [HttpGet]
         public IActionResult Delete(int id)
         {
+            BookDetailsModel? book = this.bookService.Details(id);
+            string userId = User.GetId();
+            if (book.UserId != userId)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            if (book == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
             bool findBook = this.bookService.Delete(id);
 
             if (findBook == true)
