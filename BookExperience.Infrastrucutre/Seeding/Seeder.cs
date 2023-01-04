@@ -8,9 +8,7 @@
         {
             var seeders = new List<ISeeder>()
             {
-                new RoleSeeder(),
                 new UsersSeeder(),
-                new AdminSeeder(),
                 new CategorySeeder(),
             };
 
