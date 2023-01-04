@@ -6,7 +6,7 @@
 
     public class AllBooksQueryModel
     {
-		 public const int BooksPerPage = 3;
+        public const int BooksPerPage = 3;
 
         public string Title { get; init; }
 

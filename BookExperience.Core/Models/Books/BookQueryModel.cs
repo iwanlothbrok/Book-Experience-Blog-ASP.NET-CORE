@@ -1,7 +1,7 @@
 ﻿namespace BookExperience.Core.Models.Books
 {
-	public class BookQueryModel
-	{
+    public class BookQueryModel
+    {
         public int CurrentPage { get; init; }
 
         public int BooksPerPage { get; init; }

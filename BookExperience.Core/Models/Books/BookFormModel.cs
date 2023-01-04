@@ -52,8 +52,8 @@
         /// </summary>
         [Display(Name = "Do you recommend this book?")]
         [Required]
-        public bool IsRecommended { get; set; } 
-        
-        public string UserId { get; set; } = null!;
+        public bool IsRecommended { get; set; }
+
+        public string? UserId { get; set; }
     }
 }

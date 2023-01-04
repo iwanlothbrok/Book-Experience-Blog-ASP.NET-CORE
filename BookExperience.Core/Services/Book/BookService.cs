@@ -222,6 +222,11 @@
 
             int totalBooks = booksQuery.Count();
 
+            if (searchTerm != null)
+            {
+                booksQuery = booksQuery.Where(c => c.Title.Contains(searchTerm) || c.Author.FirstName.Contains(searchTerm) || c.Author.LastName.Contains(searchTerm));
+            }
+
             var books = GetBooks(booksQuery
                  .Skip((currentPage - 1) * booksPerPage)
                  .Take(booksPerPage)
