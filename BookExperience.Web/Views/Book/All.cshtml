@@ -1,7 +1,7 @@
 ﻿@model AllBooksQueryModel
 
 @{
-	ViewData["Title"] = "Avaible cars";
+	ViewData["Title"] = "All books";
 }
 
 <form method="get">
@@ -79,10 +79,6 @@
 
 </div>
 
-@if (!Model.Books.Any())
-{
-	<h2 class="text-center">No cars found by the given criteria!</h2>
-}
 
 <partial name="_BooksPartialView" model="@Model.Books" />
 

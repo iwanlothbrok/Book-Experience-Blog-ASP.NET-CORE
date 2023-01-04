@@ -1,27 +1,22 @@
-# Renting Cars
+# Booking Experience
 A simple ASP.NET Core MVC Web App which I created to exercise what I've learned from the ASP.NET Core course at SoftUni.
 
 ## :information_source: How It Works
 
 **Guests**
-- Have access to home page for guests, all cars page and details page, also can see statistics. Can log in or register.
+- Have access to home page for guests, all books page and book details page, also can see statistics. Can log in or register.
 
 **Users**
-- Have access to all cars page, details page, become dealer page, statistics which are on home page, and can rent a car. Also can become a dealer.
+- Have access to all books page,book details page, statistics of their reading experience, and my books page where they can see the books which they read and also can recommend books.
 
-**Dealers**
-- Have access to all cars page, mine cars page, details page, offerts page, rented cars page(only his cars), statistics which are on home page, and can rent a car. He can add new cars and edit or delete cars only from my cars page, can accept offers for his cars, and can rent a car.
-
-**Admin**
-- Have access to all cars page, details page, offerts page, rented cars page, and statistics which are on the home page. He can accept cars when they were added, he can accept offers for cars, and he can see all offers which are made.
 
 **When you run the project for the first time sample data will be seeded as well as these test accounts:**
 
 - User 1 -> email: **user1@abv.bg** / password: **User.1**
 - User 2 -> email: **user2@abv.bg** / password: **User.2**
-- Admin -> email: **admin@abv.bg** / password: **Admin.1**
+- All Genres will be uploaded.
 
-**[Here](https://imgur.com/a/Io6cSqU) is a screenshot of the project's database diagram**
+**[Here](https://imgur.com/a/Dndr8Tr) is a screenshot of the project's database diagram**
 
 ## :hammer_and_pick: Built With
 - ASP.NET Core 6
