@@ -1,0 +1,10 @@
+﻿{
+  "postcss": {
+    "plugins": {
+      "postcss-remove-unused-css": {
+        "path": "./app",
+        "exts": [ ".js", ".html" ]
+      }
+    }
+  }
+}

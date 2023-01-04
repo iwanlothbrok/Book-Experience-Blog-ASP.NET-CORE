@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "purgecss": "^5.0.0"
+  },
+  "dependencies": {
+    "postcss-remove-unused-css": "^1.0.4"
+  }
+}
