@@ -12,6 +12,7 @@
         IEnumerable<string> AllTitles();
         BookDetailsModel? Details(int id);
         BookFormModel? GetBookById(int id);
+        IEnumerable<BookDetailsModel> GetLastThreeBooks();
         IEnumerable<MineBooksModel> ByUser(string userId);
         IEnumerable<MineBooksModel> GetBooks(IQueryable<Book> bookQuery);
         BookQueryModel All(string title, string searchTerm, BookSorting sorting, int currentPage, int booksPerPage);

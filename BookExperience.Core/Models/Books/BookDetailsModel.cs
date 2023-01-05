@@ -2,6 +2,7 @@
 {
     public class BookDetailsModel
     {
+        public int Id{ get; set; }
         public string Title { get; set; } = null!;
         public byte[]? BookPhoto { get; set; } = null!;
         public string PublisherName { get; set; } = null!;

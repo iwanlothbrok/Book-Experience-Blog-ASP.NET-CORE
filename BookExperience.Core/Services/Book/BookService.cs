@@ -35,6 +35,14 @@
                 })
                 .ToList();
 
+        public IEnumerable<BookDetailsModel> GetLastThreeBooks()
+        => this.data
+           .Books
+           .OrderByDescending(i => i.Id)
+           .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
+           .Take(3)
+           .ToList();
+
         public BookFormModel? GetBookById(int id)
         => this.data
         .Books
