@@ -16,8 +16,8 @@
 	</div>
 }
 else{
-			<h1 class="text-center">Welcome to the best place for renting cars!</h1>
-			<h3 class="text-center">That's our last three added books! Enjoy!</h3>
+			<h1 class="text-center">Welcome to the best book place!</h1>
+			<h3 class="text-center">That's our last three added books by our clients! Enjoy!</h3>
 
 }
 
@@ -43,7 +43,9 @@ else{
 					<p>Genre: <b>@book.GenresName</b></p>
 					<p>Pages: <b>@book.Pages</b></p>
 					<p>Publisher: <b>@book.PublisherName</b></p>
+					<p>Description: <b>@book.Description</b></p>
 					<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
+					<a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-info">Details</a>
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,7 @@
         public string PublisherName { get; set; } = null!;
         public string? Language { get; set; }
         public string GenresName { get; set; } = null!;
+        public string? Description { get; set; } 
         public string AuthorFirstName { get; set; } = null!;
         public string AuthorLastName { get; set; } = null!;
         public int Pages { get; set; }

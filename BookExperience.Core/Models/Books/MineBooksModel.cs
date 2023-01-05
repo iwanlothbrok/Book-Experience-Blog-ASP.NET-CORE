@@ -9,6 +9,7 @@
         public byte[]? BookPhoto { get; set; } = null!;
         public string PublisherName { get; set; } = null!;
         public string GenresName { get; set; } = null!;
+        public string? Description { get; set; }
         public string? Language { get; set; }
         public int Pages { get; set; }
         public bool IsRecommended { get; set; }

@@ -56,5 +56,7 @@
         /// if the book is recomended
         /// </summary>
         public bool IsRecommended { get; set; }
+
+        public string? Description { get; set; }
     }
 }
