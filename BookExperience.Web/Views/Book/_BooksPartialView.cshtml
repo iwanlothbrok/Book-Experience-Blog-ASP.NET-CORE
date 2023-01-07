@@ -60,9 +60,9 @@
 	<script>
 		$('#statistics-button').on('click', ev => {
 			$.get('/api/statistics', (data) => {
-				$('#total-books').text(data.TotalPagesReaded + " Cars");
-				$('#total-pages').text(data.TotalBooksReaded + " Users");
-				$('#total-genres').text(data.TotalGenresReaded + " Rents");
+				$('#total-books').text(data.totalPagesReaded + " Cars");
+				$('#total-pages').text(data.totalBooksReaded + " Users");
+				$('#total-genres').text(data.totalGenresReaded + " Rents");
 				$('#statistics').removeClass('d-none');
 				$('#statistics-button').hide();
 			});

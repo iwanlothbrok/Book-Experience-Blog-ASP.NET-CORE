@@ -43,7 +43,7 @@ else{
 					<p>Genre: <b>@book.GenresName</b></p>
 					<p>Pages: <b>@book.Pages</b></p>
 					<p>Publisher: <b>@book.PublisherName</b></p>
-					<p>Description: <b>@book.Description</b></p>
+					<p>User Feedback: <b>@book.Description</b></p>
 					<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
 					<a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="btn btn-info">Details</a>
 				</div>
