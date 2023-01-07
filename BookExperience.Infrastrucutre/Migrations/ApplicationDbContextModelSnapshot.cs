@@ -69,6 +69,9 @@ namespace BookExperience.Infrastrucutre.Migrations
                     b.Property<bool>("IsRecommended")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsWantedBook")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Language")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");

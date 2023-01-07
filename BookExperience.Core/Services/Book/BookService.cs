@@ -75,6 +75,24 @@
             .OrderBy(br => br)
             .ToList();
 
+        public bool MakeBookWanted(int id)
+        {
+            Book? book = this.data.Books.Find(id);
+
+            if (book == null)
+            {
+                return false;
+            }
+
+            book.IsWantedBook = true;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+
+
         public bool Delete(int id)
         {
             Book? bookData = this.data.Books.Find(id);

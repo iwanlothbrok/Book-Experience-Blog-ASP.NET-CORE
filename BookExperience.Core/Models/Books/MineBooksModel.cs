@@ -14,5 +14,6 @@
         public int Pages { get; set; }
         public bool IsRecommended { get; set; }
         public string? UserId { get; set; }
+        public bool IsWanted { get; set; }
     }
 }

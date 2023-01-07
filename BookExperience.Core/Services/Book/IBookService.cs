@@ -8,6 +8,7 @@
     public interface IBookService
     {
         bool Delete(int id);
+        bool MakeBookWanted(int id);
         IEnumerable<Genres> AllGenres();
         IEnumerable<string> AllTitles();
         BookDetailsModel? Details(int id);

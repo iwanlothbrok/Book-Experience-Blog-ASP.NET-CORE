@@ -58,5 +58,7 @@
         public bool IsRecommended { get; set; }
 
         public string? Description { get; set; }
+
+        public bool IsWantedBook { get; set; } = false;
     }
 }
