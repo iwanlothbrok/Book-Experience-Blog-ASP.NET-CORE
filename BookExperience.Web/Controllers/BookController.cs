@@ -4,7 +4,6 @@
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Models.Books;
     using BookExperience.Core.Services.Book;
-    using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using static BookExperience.Infrastrucutre.Data.DataConstants;
@@ -183,15 +182,6 @@
             }
 
             return RedirectToAction(nameof(Mine));
-        }
-        [HttpGet]
-        public IActionResult AddAsWanted(int id)
-        {
-            this.bookService.MakeBookWanted(id);
-
-             TempData[GlobalMessageKey] = "You marked the book as wanted!";
-            
-            return RedirectToAction(nameof(All));
         }
     }
 }

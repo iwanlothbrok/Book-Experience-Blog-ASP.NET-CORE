@@ -1,11 +1,13 @@
-﻿@using BookExperience.Infrastrucutre.Data.Models
+﻿@using BookExperience.Core.Services.ApplicationUser
+@using BookExperience.Core.Services.Book
 @model IEnumerable<MineBooksModel>
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-
-<div class="mb-5"></div>
+@inject IApplicationUserService userService
+@inject IBookService bookService
 
 <div class="row">
+
 	@foreach (var book in Model)
 	{
 		var base64 = Convert.ToBase64String(book.BookPhoto);
@@ -27,14 +29,19 @@
 			<p>Publisher for this language: <b>@book.PublisherName for @book.Language</b></p>
 			<p>Description: <b>@book.Description </b></p>
 			<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
-			<div class="form-group">
-				<label asp-for="@book.IsWanted"></label>
-				<input type="checkbox" asp-for="@book.IsWanted" class="form-control">
-				<span asp-validation-for="@book.IsWanted" class="small text-danger"></span>
-			</div>
-			@if (book.IsWanted == false)
+
+			@if (this.User.Identity.IsAuthenticated)
 			{
-				<a asp-controller="Book" asp-action="AddAsWanted" asp-route-id="@book.Id" class="btn btn-primary">Save</a>
+				ApplicationUser? applicationUser = this.userService.FindApplicationUserById(User.GetId());
+				Book? currentBook = this.bookService.FindBook(book.Id);
+
+				@if (applicationUser is not null 
+				&& currentBook is not null 
+				&& applicationUser.WantedBooks.Contains(currentBook) == false
+				&& currentBook.UserId != applicationUser.Id)
+				{
+					<a asp-controller="User" asp-action="AddAsWanted" asp-route-id="@book.Id" class="btn btn-primary">Mark as Wanted</a>
+				}
 			}
 			<a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>
 			<a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning">Edit</a>

@@ -1,6 +1,7 @@
 ﻿namespace BookExperience.Infrastructure.Seeding
 {
     using BookExperience.Infrastrucutre.Data;
+    using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
     using static BookExperience.Infrastructure.Seeding.SeedingConstants;
@@ -14,7 +15,7 @@
             if (!data.Users.Any(u => u.Email == emails.First() && u.Email == emails.Last()))
             {
                 var userManager =
-                    serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                    serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
                 foreach (var email in emails)
                 {
@@ -31,7 +32,7 @@
                     Task.
                         Run(async () =>
                         {
-                            var user = new IdentityUser()
+                            var user = new ApplicationUser()
                             { Email = email, UserName = email };
                             await userManager.CreateAsync(user, password);
                         })

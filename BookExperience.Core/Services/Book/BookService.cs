@@ -24,6 +24,8 @@
             this.publisherService = publisherService;
             this.mapper = mapper;
         }
+        public Book? FindBook(int id)
+        => this.data.Books.Where(c => c.Id == id).FirstOrDefault();
 
         public IEnumerable<Genres> AllGenres()
             => this.data
@@ -75,27 +77,9 @@
             .OrderBy(br => br)
             .ToList();
 
-        public bool MakeBookWanted(int id)
-        {
-            Book? book = this.data.Books.Find(id);
-
-            if (book == null)
-            {
-                return false;
-            }
-
-            book.IsWantedBook = true;
-
-            this.data.SaveChanges();
-
-            return true;
-        }
-
-
-
         public bool Delete(int id)
         {
-            Book? bookData = this.data.Books.Find(id);
+            Book? bookData = FindBook(id);
 
             bool isValid = true;
 
@@ -168,7 +152,7 @@
             book.Pages = Pages;
             book.IsRecommended = IsRecomended;
 
-            this.data.SaveChanges();
+            await this.data.SaveChangesAsync();
 
             return book.Id;
         }

@@ -1,5 +1,6 @@
 using BookExperience.Core.Extensions;
 using BookExperience.Core.ModelBinders;
+using BookExperience.Core.Services.ApplicationUser;
 using BookExperience.Core.Services.Author;
 using BookExperience.Core.Services.Book;
 using BookExperience.Core.Services.Publisher;
@@ -35,6 +36,7 @@ builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
 builder.Services.AddScoped<IStatisticsService, StatisticsService>();
+builder.Services.AddScoped<IApplicationUserService, ApplicationUserService>();
 
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
