@@ -10,6 +10,9 @@
         {
             this.data = data;
         }
+        public Author? GetAuthorInfo(int id)
+        => this.data.Authors.Find(id);
+
         public int Create(string firstName, string lastName)
         {
             Author author = new Author()
@@ -44,5 +47,6 @@
             }
             return 0;
         }
+
     }
 }

@@ -1,0 +1,44 @@
+﻿@using BookExperience.Core.Services.Author
+@using BookExperience.Core.Services.Book
+@using BookExperience.Core.Services.ApplicationUser
+@inject IApplicationUserService userService
+@inject IBookService bookService
+@inject IAuthorService authorService
+
+<div class="row">
+	@{
+		var userBooks = this.userService.GetUserWantedBooks(User.GetId());
+	}
+
+	@foreach (var book in userBooks)
+	{
+		var base64 = Convert.ToBase64String(book.BookPhoto);
+		var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+		var author = this.authorService.GetAuthorInfo(book.AuthorId);
+
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img src="@imgSrc " style="width: 25rem">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center">@book.Title by @author.FirstName @author.LastName</h5>
+				</div>
+			</div>
+		</div>
+		<div class="card col-2 border-10">
+			<p style="font-size:15px;"><u>@book.Title</u></p>
+			<p>Author: <b>@author.FirstName @author.LastName</b></p>
+			<p>Pages: <b>@book.Pages</b></p>
+			<p>Description: <b>@book.Description </b></p>
+			<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
+
+			<a asp-controller="User" asp-action="RemoveFromWanted" asp-route-id="@book.Id" class="btn btn-danger">Remove</a>
+		</div>
+	}
+</div>
+	
+
+@if (userBooks.Count() == 0)
+{
+	<h1 class="text-center">There are no books!</h1>
+}

@@ -4,6 +4,8 @@
 
 	public interface IApplicationUserService
 	{
-		ApplicationUser? FindApplicationUserById(string id); 
-	}
+		List<Book>? GetUserWantedBooks(string id);
+		ApplicationUser? FindApplicationUserById(string id);
+
+    }
 }

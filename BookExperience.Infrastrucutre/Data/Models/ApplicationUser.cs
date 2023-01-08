@@ -4,6 +4,9 @@
 
     public class ApplicationUser : IdentityUser
     {
-        public List<Book>? WantedBooks { get; set; } = new List<Book>();
+        public ApplicationUser()
+        {
+        }
+        public List<Book>? WantedBooks { get; set; } 
     }
 }
