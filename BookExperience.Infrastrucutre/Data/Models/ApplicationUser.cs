@@ -7,6 +7,6 @@
         public ApplicationUser()
         {
         }
-        public List<Book>? WantedBooks { get; set; } 
+        public List<Book>? WantedBooks { get; set; } = new List<Book>();
     }
 }

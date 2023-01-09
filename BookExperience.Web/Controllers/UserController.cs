@@ -12,12 +12,10 @@
     {
         private IBookService bookService;
         private IApplicationUserService userService;
-        private ApplicationDbContext data;
-        public UserController(IApplicationUserService userService, IBookService bookService, ApplicationDbContext data)
+        public UserController(IApplicationUserService userService, IBookService bookService)
         {
             this.userService = userService;
             this.bookService = bookService;
-            this.data = data;
         }
 
         [HttpGet]
@@ -28,7 +26,7 @@
 
             if (user is not null && book is not null)
             {
-                user.WantedBooks.Add(book);
+                this.userService.AddBook(book, user);
             }
             TempData[GlobalMessageKey] = "You marked the book as wanted!";
 
@@ -44,7 +42,6 @@
             if (user is not null && book is not null)
             {
                 user.WantedBooks.Remove(book);
-                this.data.SaveChanges();
             }
 
             TempData[GlobalMessageKey] = "You remove the book from wanted!";

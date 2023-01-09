@@ -33,10 +33,13 @@
 			@if (this.User.Identity.IsAuthenticated)
 			{
 				ApplicationUser? applicationUser = this.userService.FindApplicationUserById(User.GetId());
+
+				//List<Book>? userBooks = this.userService.GetUserWantedBooks(applicationUser.Id);
+
 				Book? currentBook = this.bookService.FindBook(book.Id);
 
 				@if (applicationUser is not null 
-				&& currentBook is not null 
+				&& currentBook is not null
 				&& applicationUser.WantedBooks.Contains(currentBook) == false
 				&& currentBook.UserId != applicationUser.Id)
 				{
