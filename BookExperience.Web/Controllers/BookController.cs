@@ -44,7 +44,7 @@
                 return View(book);
             }
 
-            await this.bookService.Create(book.Title, book.AuthorFirstName, book.AuthorLastName, book.PublisherName, BookPhoto, book.Language, book.GenresId, book.Pages, book.IsRecommended, User.GetId());
+            await this.bookService.Create(book.Title, book.AuthorFirstName, book.AuthorLastName, book.PublisherName, BookPhoto, book.Language, book.GenresId, book.Pages, book.IsRecommended, User.GetId(), book.Description);
 
             TempData[GlobalMessageKey] = "Thank you for adding this book!";
 
@@ -142,7 +142,8 @@
                 book.IsRecommended,
                 book.AuthorFirstName,
                 book.AuthorLastName,
-                book.PublisherName);
+                book.PublisherName,
+                book.Description);
 
 
             TempData[GlobalMessageKey] = "You edit this book successfully!";

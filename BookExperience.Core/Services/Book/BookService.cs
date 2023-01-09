@@ -97,7 +97,7 @@
             return isValid;
         }
 
-        public async Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended, string authorFName, string authorLName, string publisherName)
+        public async Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended, string authorFName, string authorLName, string publisherName, string description)
         {
             Book? book = await this.data.Books.FindAsync(id);
 
@@ -151,13 +151,14 @@
             book.GenresId = GenresId;
             book.Pages = Pages;
             book.IsRecommended = IsRecomended;
+            book.Description = description;
 
             await this.data.SaveChangesAsync();
 
             return book.Id;
         }
 
-        public async Task<int> Create(string Title, string AuthorFirstName, string AuthorLastName, string PublisherName, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended, string userId)
+        public async Task<int> Create(string Title, string AuthorFirstName, string AuthorLastName, string PublisherName, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages, bool IsRecomended, string userId, string description)
         {
             byte[] photo = new byte[8000];
             foreach (var item in bookPhoto)
@@ -205,6 +206,7 @@
                 Pages = Pages,
                 IsRecommended = IsRecomended,
                 UserId = userId,
+                Description = description
             };
 
             await this.data.Books.AddAsync(bookData);
