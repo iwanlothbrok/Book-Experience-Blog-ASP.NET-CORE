@@ -9,7 +9,16 @@
 	@{
 		var user = this.userService.FindApplicationUserById(User.GetId());
 
-		@foreach (var book in user.WantedBooks)
+		var books = new List<Book>();
+
+		foreach (var book in user.WantedBooks)
+		{
+			var neededBook = this.bookService.FindBook(book.Id);
+
+			books.Add(neededBook);
+		}
+
+		@foreach (var book in books)
 		{
 		var base64 = Convert.ToBase64String(book.BookPhoto);
 		var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
@@ -38,8 +47,7 @@
 </div>
 	
 
-@*@if (userBooks.Count() == 0)
+@if (books.Count() == 0)
 {
 	<h1 class="text-center">There are no books!</h1>
 }
-*@

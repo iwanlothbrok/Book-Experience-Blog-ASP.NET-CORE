@@ -36,6 +36,17 @@
                     Name = c.Name
                 })
                 .ToList();
+        public bool AddUserInWanted(Book book, ApplicationUser user)
+        {
+            if (book.UsersThatWantedTheBook.Contains(user))
+            {
+                return false;
+            }
+            book.UsersThatWantedTheBook.Add(user);
+            this.data.SaveChanges();
+            return true;
+        }
+
 
         public IEnumerable<BookDetailsModel> GetLastThreeBooks()
         => this.data

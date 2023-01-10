@@ -27,6 +27,10 @@
               .HasForeignKey(c => c.AuthorId)
               .OnDelete(DeleteBehavior.Restrict);
 
+            builder
+            .Entity<Book>()
+            .HasMany(c => c.UsersThatWantedTheBook)
+            .WithMany(d => d.WantedBooks);
 
             base.OnModelCreating(builder);
         }

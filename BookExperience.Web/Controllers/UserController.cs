@@ -3,7 +3,6 @@
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Services.ApplicationUser;
     using BookExperience.Core.Services.Book;
-    using BookExperience.Infrastrucutre.Data;
     using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using static BookExperience.Infrastrucutre.Data.DataConstants;
@@ -27,6 +26,7 @@
             if (user is not null && book is not null)
             {
                 this.userService.AddBook(book, user);
+                this.bookService.AddUserInWanted(book, user);
             }
             TempData[GlobalMessageKey] = "You marked the book as wanted!";
 

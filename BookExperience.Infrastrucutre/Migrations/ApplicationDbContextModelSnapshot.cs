@@ -22,6 +22,21 @@ namespace BookExperience.Infrastrucutre.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("ApplicationUserBook", b =>
+                {
+                    b.Property<string>("UsersThatWantedTheBookId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("WantedBooksId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UsersThatWantedTheBookId", "WantedBooksId");
+
+                    b.HasIndex("WantedBooksId");
+
+                    b.ToTable("ApplicationUserBook");
+                });
+
             modelBuilder.Entity("BookExperience.Infrastrucutre.Data.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -74,6 +89,9 @@ namespace BookExperience.Infrastrucutre.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int?>("WantedBooksIds_Capacity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -107,7 +125,7 @@ namespace BookExperience.Infrastrucutre.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("BookExperience.Infrastrucutre.Data.Models.Book", b =>
@@ -117,9 +135,6 @@ namespace BookExperience.Infrastrucutre.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
@@ -135,9 +150,6 @@ namespace BookExperience.Infrastrucutre.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsRecommended")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsWantedBook")
                         .HasColumnType("bit");
 
                     b.Property<string>("Language")
@@ -159,9 +171,10 @@ namespace BookExperience.Infrastrucutre.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("UsersWantingTheBook_Capacity")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
 
@@ -169,7 +182,7 @@ namespace BookExperience.Infrastrucutre.Migrations
 
                     b.HasIndex("PublisherId");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("BookExperience.Infrastrucutre.Data.Models.Genres", b =>
@@ -187,7 +200,7 @@ namespace BookExperience.Infrastrucutre.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("BookExperience.Infrastrucutre.Data.Models.Publisher", b =>
@@ -205,7 +218,7 @@ namespace BookExperience.Infrastrucutre.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers", (string)null);
+                    b.ToTable("Publishers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -345,12 +358,23 @@ namespace BookExperience.Infrastrucutre.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BookExperience.Infrastrucutre.Data.Models.Book", b =>
+            modelBuilder.Entity("ApplicationUserBook", b =>
                 {
                     b.HasOne("BookExperience.Infrastrucutre.Data.Models.ApplicationUser", null)
-                        .WithMany("WantedBooks")
-                        .HasForeignKey("ApplicationUserId");
+                        .WithMany()
+                        .HasForeignKey("UsersThatWantedTheBookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
+                    b.HasOne("BookExperience.Infrastrucutre.Data.Models.Book", null)
+                        .WithMany()
+                        .HasForeignKey("WantedBooksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BookExperience.Infrastrucutre.Data.Models.Book", b =>
+                {
                     b.HasOne("BookExperience.Infrastrucutre.Data.Models.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
@@ -423,11 +447,6 @@ namespace BookExperience.Infrastrucutre.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BookExperience.Infrastrucutre.Data.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("WantedBooks");
                 });
 
             modelBuilder.Entity("BookExperience.Infrastrucutre.Data.Models.Author", b =>

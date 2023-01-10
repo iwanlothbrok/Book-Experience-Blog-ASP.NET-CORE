@@ -112,17 +112,12 @@
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, BookFormModel book, List<IFormFile> BookPhoto)
-        {
+            {
             if (BookPhoto == null || BookPhoto.Count == 0)
             {
                 book.Genres = this.bookService.AllGenres();
 
                 return View(book);
-            }
-            string userId = User.GetId();
-            if (book.UserId != userId)
-            {
-                return RedirectToAction("Error", "Home");
             }
 
             if (this.ModelState.IsValid == false)

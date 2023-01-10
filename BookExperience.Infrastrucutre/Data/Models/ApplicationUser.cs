@@ -4,9 +4,7 @@
 
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser()
-        {
-        }
-        public List<Book>? WantedBooks { get; set; } = new List<Book>();
+        public int? WantedBooksIds_Capacity { get; set; }
+        public virtual List<Book> WantedBooks { get; set; } = new List<Book>();
     }
 }

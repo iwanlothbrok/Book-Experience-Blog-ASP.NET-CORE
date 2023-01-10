@@ -5,6 +5,10 @@
 
     public class Book
     {
+        public Book()
+        {
+            UsersThatWantedTheBook = new List<ApplicationUser>();
+        }
         public int Id { get; set; }
 
         /// <summary>
@@ -58,5 +62,8 @@
         public bool IsRecommended { get; set; }
 
         public string? Description { get; set; }
+
+        public int? UsersWantingTheBook_Capacity { get; set; }
+        public virtual List<ApplicationUser> UsersThatWantedTheBook { get; set; }
     }
 }
