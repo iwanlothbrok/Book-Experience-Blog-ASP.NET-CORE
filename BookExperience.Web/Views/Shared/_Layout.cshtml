@@ -56,6 +56,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						 <a class="nav-link" asp-area="" asp-controller="User" asp-action="WantedBooks">Wanted Books<i class="nav-link"></i></a>
 				  </div>
 				</div>
+				<div class="dropdown">
+				  <button class="dropbtn">Books for genre</button>
+				  <div class="dropdown-content">
+					  	 <a asp-controller="Genre" asp-action="FilteredByGenres" asp-route-id="@AdventureStoriesId" class="btn btn-light">Adventure Stories</a>
+@*						 <a asp-controller="Genre" asp-action="FilteredByGenres" asp-route="@ClassicsId" class="btn btn-light" >Classics</a>
+*@						 @*<a class="btn btn-light" asp-controller="Genre" asp-route="@CrimeId" asp-action="FilteredByGenres">Crime</a>
+						 <a class="btn btn-light" asp-controller="Genre" asp-route="@FairyTalesId" asp-action="FilteredByGenres">Fairy Tales</a>
+						 <a class="btn btn-light" asp-controller="Genre" asp-route="@FantasyId" asp-action="FilteredByGenres">Fantasy</a>
+						 <a class="btn btn-light" asp-controller="Genre" asp-route="@HistoricalFictionId" asp-action="FilteredByGenres">Historical Fiction</a>
+						 <a class="btn btn-light" asp-controller="Genre" asp-route="@HorrorId" asp-action="FilteredByGenres">Horror</a>
+						 <a class="btn btn-light" asp-controller="Genre" asp-route="@HumourAndSatireId" asp-action="FilteredByGenres">Humour And Satire</a>
+						 <a class="btn btn-light" asp-controller="Genre" asp-route="@PhilosophyId" asp-action="FilteredByGenres">Philosophy</a>*@
+				  </div>
+				</div>
 			}
 			@if (SignInManager.IsSignedIn(User) == false)
 			{

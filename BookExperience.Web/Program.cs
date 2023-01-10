@@ -3,6 +3,7 @@ using BookExperience.Core.ModelBinders;
 using BookExperience.Core.Services.ApplicationUser;
 using BookExperience.Core.Services.Author;
 using BookExperience.Core.Services.Book;
+using BookExperience.Core.Services.Genre;
 using BookExperience.Core.Services.Publisher;
 using BookExperience.Core.Services.Statistics;
 using BookExperience.Infrastrucutre.Data;
@@ -33,6 +34,7 @@ builder.Services.AddAuthentication()
     });
 
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
 builder.Services.AddScoped<IStatisticsService, StatisticsService>();
