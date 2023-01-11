@@ -17,27 +17,17 @@
 
             if (id < 0)
             {
-                return RedirectToAction("Error", "Index");
+                return RedirectToAction("Error", "Home");
             }
 
             model = this.genreService.GetBooksSortedByGenre(id);
 
+            if (model == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
             return View(model); 
         }
-
-        //public IActionResult AdventureStories()
-        //{
-
-        //}
     }
 }
-//Adventure stories
-//Classics
-//Crime
-//Fairy tales
-//Fantasy
-//Historical fiction
-//Horror
-//Humour and satire
-//Philosophy
-//NULL

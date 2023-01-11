@@ -4,6 +4,7 @@
     using BookExperience.Core.Models.Genres;
     using BookExperience.Core.Services.Book;
     using BookExperience.Infrastrucutre.Data;
+    using BookExperience.Infrastrucutre.Data.Models;
 
     public class GenreService : IGenreService
     {
@@ -17,15 +18,19 @@
             this.mapper = mapper;
         }
 
+        public Genres? FindGenre(int id)
+        => this.data.Genres.Find(id);
+
         public GenresFilterModel? GetBooksSortedByGenre(int id)
         {
             GenresFilterModel model = new GenresFilterModel();
-            if (this.data.Genres.Find(id) == null)
+            Genres? genre = FindGenre(id);
+            if (genre == null)
             {
                 return null;
             }
 
-            model.SortedBooks = this.data.Books.Where(c => c.GenresId == id).ToList();
+            model.SortedBooks = this.bookService.GetAllBooksDetails().Where(c => c.GenresName.ToLower() == genre.Name.ToLower()).ToList();
             model.Id = id;
 
             return model;

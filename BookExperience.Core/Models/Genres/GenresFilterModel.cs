@@ -1,10 +1,10 @@
 ﻿namespace BookExperience.Core.Models.Genres
 {
-    using BookExperience.Infrastrucutre.Data.Models;
+    using BookExperience.Core.Models.Books;
 
     public class GenresFilterModel
     {
         public int Id { get; set; }
-        public List<Book> SortedBooks{ get; set; } = new List<Book>();  
+        public List<BookDetailsModel> SortedBooks{ get; set; } = new List<BookDetailsModel>();  
     }
 }

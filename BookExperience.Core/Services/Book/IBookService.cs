@@ -15,6 +15,7 @@
         BookFormModel? GetBookById(int id);
         IEnumerable<BookDetailsModel> GetLastThreeBooks();
         IEnumerable<MineBooksModel> ByUser(string userId);
+        IEnumerable<BookDetailsModel> GetAllBooksDetails();
         bool AddUserInWanted(Book book, ApplicationUser user);
         IEnumerable<MineBooksModel> GetBooks(IQueryable<Book> bookQuery);
         BookQueryModel All(string title, string searchTerm, BookSorting sorting, int currentPage, int booksPerPage);

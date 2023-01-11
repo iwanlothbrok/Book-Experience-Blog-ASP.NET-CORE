@@ -47,13 +47,17 @@
             return true;
         }
 
-
         public IEnumerable<BookDetailsModel> GetLastThreeBooks()
         => this.data
            .Books
            .OrderByDescending(i => i.Id)
            .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
            .Take(3)
+           .ToList();
+        public IEnumerable<BookDetailsModel> GetAllBooksDetails()
+        => this.data
+           .Books
+           .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
            .ToList();
 
         public BookFormModel? GetBookById(int id)

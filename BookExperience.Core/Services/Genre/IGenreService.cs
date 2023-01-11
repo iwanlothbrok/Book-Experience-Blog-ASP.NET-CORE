@@ -5,6 +5,7 @@
 
     public interface IGenreService
     {
+        Genres? FindGenre(int id);
         GenresFilterModel? GetBooksSortedByGenre(int id);
     }
 }

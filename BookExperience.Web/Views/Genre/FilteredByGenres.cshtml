@@ -1,0 +1,37 @@
+﻿@using BookExperience.Core.Models.Genres
+@model GenresFilterModel
+
+<div class="row">
+
+	@foreach (var book in Model.SortedBooks)
+	{
+		var base64 = Convert.ToBase64String(book.BookPhoto);
+		var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<img src="@imgSrc " style="width: 25rem">
+				<div class="card-body text-center">
+					<h5 class="card-title text-center">@book.Title by @book.AuthorFirstName @book.AuthorLastName (@book.GenresName)</h5>
+				</div>
+			</div>
+		</div>
+		<div class="card col-2 border-10">
+			<p style="font-size:15px;"><u>@book.Title</u></p>
+			<p>Author: <b>@book.AuthorFirstName @book.AuthorLastName</b></p>
+			<p>Category: <b>@book.GenresName</b></p>
+			<p>Pages: <b>@book.Pages</b></p>
+			<p>Publisher for this language: <b>@book.PublisherName for @book.Language</b></p>
+			<p>Description: <b>@book.Description </b></p>
+			<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
+
+		</div>
+	}
+</div>
+
+@if (Model.SortedBooks.Count() == 0)
+{
+	<h1 class="text-center">There are no books with these criteria!</h1>
+}
+
+
