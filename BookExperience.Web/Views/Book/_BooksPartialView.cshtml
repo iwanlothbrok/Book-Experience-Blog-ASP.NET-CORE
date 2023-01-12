@@ -37,7 +37,7 @@
 				@if (this.wantedBookService.DoesBookIsWantedByUser(book.Id,User.GetId()) == false
 				&& book.UserId != User.GetId())
 				{
-					<a asp-controller="User" asp-action="AddAsWanted" asp-route-id="@book.Id" class="btn btn-primary">Mark as Wanted</a>
+					<a asp-controller="WantedBooks" asp-action="AddAsWanted" asp-route-id="@book.Id" class="btn btn-primary">Mark as Wanted</a>
 				}
 			}
 			<a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger" onclick="myFunction() ">Delete</a>

@@ -47,5 +47,19 @@
 
             return false;
         }
+
+        public bool RemoveWantedBook(int id)
+        {
+            var info = this.data.WantedBooks.Find(id);
+
+            if (info != null)
+            {
+                this.data.WantedBooks.Remove(info);
+                this.data.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

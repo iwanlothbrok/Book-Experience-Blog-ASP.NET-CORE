@@ -35,7 +35,7 @@
 				<p>Description: <b>@book.Description </b></p>
 				<p><i>(@(book.IsRecommended ? "Recommended" : "Not Recommended"))</i></p>
 
-				<a asp-controller="User" asp-action="RemoveFromWanted" asp-route-id="@book.Id" class="btn btn-danger">Remove from Wanted</a>
+				<a asp-controller="WantedBooks" asp-action="RemoveFromWanted" asp-route-id="@incomeBook.Id" class="btn btn-danger">Remove from Wanted</a>
 			</div>
 		}
 	}
