@@ -1,30 +1,25 @@
 ﻿@using BookExperience.Core.Services.Author
 @using BookExperience.Core.Services.Book
 @using BookExperience.Core.Services.ApplicationUser
+@using BookExperience.Core.Services.WantedBooks
 @inject IApplicationUserService userService
 @inject IBookService bookService
+@inject IWantedBooksService wantedBooksService
 @inject IAuthorService authorService
 
 <div class="row">
 	@{
-		var user = this.userService.FindApplicationUserById(User.GetId());
-		var book12 = this.bookService.FindBook(77);
 
-		var books = new List<Book>();
+		var books = this.wantedBooksService.GetWantedBooksByUserId(User.GetId());
 
-		foreach (var book in user.WantedBooks)
+		@foreach (var incomeBook in books)
 		{
-			var neededBook = this.bookService.FindBook(book.Id);
+			var book = this.bookService.GetBookById(incomeBook.BookId);
 
-			books.Add(neededBook);
-		}
+			var base64 = Convert.ToBase64String(book.BookPhoto);
+			var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-		@foreach (var book in books)
-		{
-		var base64 = Convert.ToBase64String(book.BookPhoto);
-		var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-
-		var author = this.authorService.GetAuthorInfo(book.AuthorId);
+			var author = this.authorService.GetAuthorInfo(book.AuthorId);
 
 			<div class="col-md-4">
 				<div class="card mb-3">
@@ -46,7 +41,7 @@
 		}
 	}
 </div>
-	
+
 
 @if (books.Count() == 0)
 {

@@ -3,6 +3,7 @@
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Services.ApplicationUser;
     using BookExperience.Core.Services.Book;
+    using BookExperience.Core.Services.WantedBooks;
     using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Mvc;
     using static BookExperience.Infrastrucutre.Data.DataConstants;
@@ -11,10 +12,13 @@
     {
         private IBookService bookService;
         private IApplicationUserService userService;
-        public UserController(IApplicationUserService userService, IBookService bookService)
+        private IWantedBooksService wantedBooks;
+
+        public UserController(IApplicationUserService userService, IBookService bookService, IWantedBooksService wantedBooks)
         {
             this.userService = userService;
             this.bookService = bookService;
+            this.wantedBooks = wantedBooks;
         }
 
         [HttpGet]
@@ -25,8 +29,9 @@
 
             if (user is not null && book is not null)
             {
-                this.userService.AddBook(book, user);
-                this.bookService.AddUserInWanted(book, user);
+                this.wantedBooks.AddWantedBooks(book.Id, user.Id);
+                //this.userService.AddBook(book, user);
+                //this.bookService.AddUserInWanted(book, user);
             }
             TempData[GlobalMessageKey] = "You marked the book as wanted!";
 

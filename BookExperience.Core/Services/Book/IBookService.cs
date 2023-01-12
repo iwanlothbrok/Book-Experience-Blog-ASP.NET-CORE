@@ -13,6 +13,7 @@
         IEnumerable<string> AllTitles();
         BookDetailsModel? Details(int id);
         BookFormModel? GetBookById(int id);
+        //BookDetailsModel GetDetailsForBookById(int id);
         IEnumerable<BookDetailsModel> GetLastThreeBooks();
         IEnumerable<MineBooksModel> ByUser(string userId);
         IEnumerable<BookDetailsModel> GetAllBooksDetails();

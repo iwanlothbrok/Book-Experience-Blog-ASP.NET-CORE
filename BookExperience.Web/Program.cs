@@ -6,6 +6,7 @@ using BookExperience.Core.Services.Book;
 using BookExperience.Core.Services.Genre;
 using BookExperience.Core.Services.Publisher;
 using BookExperience.Core.Services.Statistics;
+using BookExperience.Core.Services.WantedBooks;
 using BookExperience.Infrastrucutre.Data;
 using BookExperience.Infrastrucutre.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -38,6 +39,7 @@ builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IPublisherService, PublisherService>();
 builder.Services.AddScoped<IStatisticsService, StatisticsService>();
+builder.Services.AddScoped<IWantedBooksService, WantedBooksService>();
 builder.Services.AddScoped<IApplicationUserService, ApplicationUserService>();
 
 builder.Services.AddControllersWithViews()
