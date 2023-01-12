@@ -32,13 +32,16 @@
             .HasMany(c => c.UsersThatWantedTheBook)
             .WithMany(d => d.WantedBooks);
 
+            builder.Entity<WantedBook>().HasKey(c => new { c.BookId, c.ApplicationUserId });
+
             base.OnModelCreating(builder);
         }
 
-        public DbSet<Genres> Genres { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Genres> Genres { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<WantedBook> WantedBooks { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
