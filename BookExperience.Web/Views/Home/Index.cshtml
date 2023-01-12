@@ -73,9 +73,9 @@ else{
 	<script>
 		$('#statistics-button').on('click', ev => {
 			$.get('/api/statistics', (data) => {
-				$('#total-books').text(data.totalBooksReaded + " Cars");
-				$('#total-genres').text(data.totalGenresReaded + " Users");
-				$('#total-pages').text(data.totalPagesReaded + " Rents");
+				$('#total-books').text(data.totalBooksReaded + " Books");
+				$('#total-genres').text(data.totalGenresReaded + " Genres");
+				$('#total-pages').text(data.totalPagesReaded + " Total Pages");
 				$('#statistics').removeClass('d-none');
 				$('#statistics-button').hide();
 			});

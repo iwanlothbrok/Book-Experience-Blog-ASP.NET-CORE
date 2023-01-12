@@ -8,6 +8,7 @@
 <div class="row">
 	@{
 		var user = this.userService.FindApplicationUserById(User.GetId());
+		var book12 = this.bookService.FindBook(77);
 
 		var books = new List<Book>();
 

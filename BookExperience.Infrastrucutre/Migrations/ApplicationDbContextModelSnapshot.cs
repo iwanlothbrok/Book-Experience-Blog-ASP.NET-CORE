@@ -159,7 +159,7 @@ namespace BookExperience.Infrastrucutre.Migrations
                     b.Property<int?>("Pages")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PublisherId")
+                    b.Property<int>("PublisherId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -170,9 +170,6 @@ namespace BookExperience.Infrastrucutre.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UsersWantingTheBook_Capacity")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -389,7 +386,9 @@ namespace BookExperience.Infrastrucutre.Migrations
 
                     b.HasOne("BookExperience.Infrastrucutre.Data.Models.Publisher", "Publisher")
                         .WithMany("Books")
-                        .HasForeignKey("PublisherId");
+                        .HasForeignKey("PublisherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Author");
 
