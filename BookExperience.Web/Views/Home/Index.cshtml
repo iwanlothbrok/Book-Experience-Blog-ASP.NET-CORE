@@ -56,31 +56,29 @@ else{
 <div class="mb-5"></div>
 
 <div class="row">
-    <div class="col-12 text-center">
-        <button class="btn btn-primary" id="#statistics-button">Show Statistics</button>
-    </div>
+	<div class="col-12 text-center">
+		<button class="btn btn-primary" id="statistics-button">Show Statistics</button>
+	</div>
 </div>
 
 <div class="jumbotron d-none" id="statistics">
-    <div class="row">
-		<h2 class="col-md-4 text-center" id="total-totalPagesReaded"></h2>
-		<h2 class="col-md-4 text-center" id="total-totalBooksReaded"></h2>
-		<h2 class="col-md-4 text-center" id="total-totalGenresReaded"></h2>
-    </div>
+	<div class="row">
+		<h2 class="col-md-4 text-center" id="total-books"></h2>
+		<h2 class="col-md-4 text-center" id="total-genres"></h2>
+		<h2 class="col-md-4 text-center" id="total-pages"></h2>
+	</div>
 </div>
 
 @section Scripts {
-    <script>
-        $('#statistics-button').on('click', ev => {
+	<script>
+		$('#statistics-button').on('click', ev => {
 			$.get('/api/statistics', (data) => {
-				$('#total-totalPagesReaded').text(data.totalPagesReaded + " Cars");
-				$('#total-totalBooksReaded').text(data.totalBooksReaded + " Users");
-				$('#total-totalGenresReaded').text(data.totalGenresReaded + " Rents");
-
-                $('#statistics').removeClass('d-none');
-                $('#statistics-button').hide();
-            });
-        });
-    </script>
-}		
-
+				$('#total-books').text(data.totalBooksReaded + " Cars");
+				$('#total-genres').text(data.totalGenresReaded + " Users");
+				$('#total-pages').text(data.totalPagesReaded + " Rents");
+				$('#statistics').removeClass('d-none');
+				$('#statistics-button').hide();
+			});
+		});
+	</script>
+}

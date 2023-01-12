@@ -7,7 +7,7 @@
     {
         public void Seed(ApplicationDbContext data, IServiceProvider serviceProvider)
         {
-            var seeders = new List<ISeeder>()
+            List<ISeeder> seeders = new List<ISeeder>()
             {
                 new UsersSeeder(),
                 new AuthorSeeding(),
