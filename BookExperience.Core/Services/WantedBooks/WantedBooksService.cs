@@ -32,5 +32,20 @@
 
             return true;
         }
+
+        public bool DoesBookIsWantedByUser(int bookId, string userId)
+        {
+            var allWantedBooks = this.data.WantedBooks.ToList();
+
+            foreach (var book in allWantedBooks)
+            {
+                if (book.ApplicationUserId == userId && book.BookId == bookId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

@@ -1,10 +1,12 @@
 ﻿@using BookExperience.Core.Services.ApplicationUser
 @using BookExperience.Core.Services.Book
+@using BookExperience.Core.Services.WantedBooks
 @model IEnumerable<MineBooksModel>
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IApplicationUserService userService
 @inject IBookService bookService
+@inject IWantedBooksService wantedBookService;
 
 <div class="row">
 
@@ -32,16 +34,8 @@
 
 			@if (this.User.Identity.IsAuthenticated)
 			{
-				ApplicationUser? applicationUser = this.userService.FindApplicationUserById(User.GetId());
-
-				//List<Book>? userBooks = this.userService.GetUserWantedBooks(applicationUser.Id);
-
-				Book? currentBook = this.bookService.FindBook(book.Id);
-
-				@if (applicationUser is not null 
-				&& currentBook is not null
-				&& applicationUser.WantedBooks.Contains(currentBook) == false
-				&& currentBook.UserId != applicationUser.Id)
+				@if (this.wantedBookService.DoesBookIsWantedByUser(book.Id,User.GetId()) == false
+				&& book.UserId != User.GetId())
 				{
 					<a asp-controller="User" asp-action="AddAsWanted" asp-route-id="@book.Id" class="btn btn-primary">Mark as Wanted</a>
 				}

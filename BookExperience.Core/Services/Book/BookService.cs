@@ -59,12 +59,13 @@
            .Books
            .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
            .ToList();
-       // public BookDetailsModel? GetDetailsForBookById(int id)
-       //=> this.data
-       //    .Books
-       //    .Where(i => i.Id == id)
-       //    .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
-       //    .FirstOrDefault();
+
+        public BookDetailsModel? GetDetailsForBookById(int id)
+       => this.data
+           .Books
+           .Where(i => i.Id == id)
+           .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
+           .FirstOrDefault();
 
         public BookFormModel? GetBookById(int id)
         => this.data
