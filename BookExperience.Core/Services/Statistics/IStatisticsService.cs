@@ -4,6 +4,6 @@
 
     public interface IStatisticsService
     {
-        StatisticsServiceModel Total(string userId);
+        StatisticsServiceModel Total();
     }
 }

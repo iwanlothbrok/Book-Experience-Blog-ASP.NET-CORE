@@ -11,14 +11,14 @@
             this.data = data;
         }
 
-        public StatisticsServiceModel Total(string userId)
+        public StatisticsServiceModel Total()
         {
             StatisticsServiceModel model = new StatisticsServiceModel();
 
 
-            List<int?> pages = this.data.Books.Where(c => c.UserId == userId).Select(c => c.Pages).ToList();
-            int booksCount = this.data.Books.Where(c => c.UserId == userId).ToList().Count();
-            var genresCount = this.data.Books.Where(c => c.UserId == userId).Select(c => c.GenresId).ToHashSet(); // this maybe wont work
+            List<int?> pages = this.data.Books.Select(c => c.Pages).ToList();
+            int booksCount = this.data.Books.ToList().Count();
+            var genresCount = this.data.Books.Select(c => c.GenresId).ToHashSet(); // this maybe wont work
 
             int? pagesCount = 0;
             foreach (var bookPage in pages)
