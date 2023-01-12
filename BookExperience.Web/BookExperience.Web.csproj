@@ -13,22 +13,6 @@
 
   <ItemGroup>
     <None Include="Views\Home\Index.cshtml" />
-    <None Include="wwwroot\js\adminlte.js" />
-    <None Include="wwwroot\js\adminlte.js.map" />
-    <None Include="wwwroot\js\adminlte.min.js" />
-    <None Include="wwwroot\js\adminlte.min.js.map" />
-    <None Include="wwwroot\js\bootstrap.bundle.js" />
-    <None Include="wwwroot\js\bootstrap.bundle.js.map" />
-    <None Include="wwwroot\js\bootstrap.bundle.min.js" />
-    <None Include="wwwroot\js\bootstrap.bundle.min.js.map" />
-    <None Include="wwwroot\js\bootstrap.js" />
-    <None Include="wwwroot\js\bootstrap.js.map" />
-    <None Include="wwwroot\js\bootstrap.min.js" />
-    <None Include="wwwroot\js\bootstrap.min.js.map" />
-    <None Include="wwwroot\js\demo.js" />
-    <None Include="wwwroot\js\pages\dashboard.js" />
-    <None Include="wwwroot\js\pages\dashboard2.js" />
-    <None Include="wwwroot\js\pages\dashboard3.js" />
   </ItemGroup>
 
   <ItemGroup>
