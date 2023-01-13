@@ -112,7 +112,7 @@
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, BookFormModel book, List<IFormFile> BookPhoto)
-            {
+        {
             if (BookPhoto == null || BookPhoto.Count == 0)
             {
                 book.Genres = this.bookService.AllGenres();

@@ -32,7 +32,6 @@
             .HasMany(c => c.UsersThatWantedTheBook)
             .WithMany(d => d.WantedBooks);
 
-            //builder.Entity<WantedBook>().HasKey(c => new { c.BookId, c.ApplicationUserId });
 
             base.OnModelCreating(builder);
         }

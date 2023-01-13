@@ -1,17 +1,16 @@
 ﻿namespace BookExperience.Infrastrucutre.Data.Models
 {
-	using Microsoft.EntityFrameworkCore.Metadata.Internal;
-	using ServiceStack.DataAnnotations;
+    using ServiceStack.DataAnnotations;
 
-	public class WantedBook
-	{
-		[PrimaryKey]
-		public int Id { get; set; }
+    public class WantedBook
+    {
+        [PrimaryKey]
+        public int Id { get; set; }
 
-		public int BookId { get; set; }
-		public Book? Book { get; set; }
+        public int BookId { get; set; }
+        public Book? Book { get; set; }
 
-		public string ApplicationUserId { get; set; } 
-		public ApplicationUser? ApplicationUser { get; set; }
-	}
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser? ApplicationUser { get; set; }
+    }
 }

@@ -5,6 +5,6 @@
     public class GenresFilterModel
     {
         public int Id { get; set; }
-        public List<BookDetailsModel> SortedBooks{ get; set; } = new List<BookDetailsModel>();  
+        public List<BookDetailsModel> SortedBooks { get; set; } = new List<BookDetailsModel>();
     }
 }

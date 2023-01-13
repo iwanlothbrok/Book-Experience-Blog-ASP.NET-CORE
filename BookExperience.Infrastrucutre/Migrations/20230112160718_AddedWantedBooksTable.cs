@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
-
-namespace BookExperience.Infrastrucutre.Migrations
+﻿namespace BookExperience.Infrastrucutre.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedWantedBooksTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

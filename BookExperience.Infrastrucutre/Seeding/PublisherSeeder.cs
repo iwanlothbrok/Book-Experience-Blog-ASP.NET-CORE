@@ -11,8 +11,8 @@
         {
             if (!data.Publishers.Any(d => d.Id == 1))
             {
-                 AddPublisher(data, 1, "Ciela");
-                 AddPublisher(data, 2, "Libri");
+                AddPublisher(data, 1, "Ciela");
+                AddPublisher(data, 2, "Libri");
 
                 data.Database.OpenConnection();
                 try
