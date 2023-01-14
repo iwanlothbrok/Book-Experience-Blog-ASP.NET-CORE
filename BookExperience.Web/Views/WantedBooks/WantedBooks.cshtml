@@ -9,9 +9,7 @@
 
 <div class="row">
 	@{
-
 		var books = this.wantedBooksService.GetWantedBooksByUserId(User.GetId());
-
 
 		@foreach (var incomeBook in books)
 		{

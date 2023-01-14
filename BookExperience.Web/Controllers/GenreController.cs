@@ -2,6 +2,7 @@
 {
     using BookExperience.Core.Models.Genres;
     using BookExperience.Core.Services.Genre;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class GenreController : Controller
@@ -11,6 +12,8 @@
         {
             this.genreService = genreService;
         }
+
+        [AllowAnonymous]
         public IActionResult FilteredByGenres(int id)
         {
             GenresFilterModel model = new GenresFilterModel();

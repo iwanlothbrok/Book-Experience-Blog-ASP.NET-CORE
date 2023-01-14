@@ -52,8 +52,7 @@
 	<h1 class="text-center">There are no books!</h1>
 }
 
-@if (SignInManager.IsSignedIn(User))
-{
+
 	<div class="mb-5"></div>
 
 	<div class="row">
@@ -69,7 +68,7 @@
 			<h2 class="col-md-4 text-center" id="total-genres"></h2>
 		</div>
 	</div>
-}
+
 @section Scripts {
 	<script>
 		$('#statistics-button').on('click', ev => {
@@ -81,8 +80,7 @@
 				$('#statistics-button').hide();
 			});
 		});
-	</script>
-}
+	</script>}
 
 	<script>
 		function myFunction() {
