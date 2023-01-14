@@ -10,12 +10,10 @@
     {
         private readonly ApplicationDbContext data;
         private readonly IBookService bookService;
-        private readonly IMapper mapper;
-        public GenreService(ApplicationDbContext data, IBookService bookService, IMapper mapper)
+        public GenreService(ApplicationDbContext data, IBookService bookService)
         {
             this.data = data;
             this.bookService = bookService;
-            this.mapper = mapper;
         }
 
         public Genres? FindGenre(int id)

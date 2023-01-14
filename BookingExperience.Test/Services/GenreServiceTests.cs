@@ -1,30 +1,39 @@
 ﻿namespace BookingExperience.Test.Services
 {
-    using BookExperience.Core.Services.ApplicationUser;
-    using BookExperience.Infrastrucutre.Data;
+    using BookExperience.Core.Services.Author;
     using BookExperience.Infrastrucutre.Data.Models;
+    using BookExperience.Infrastrucutre.Data;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using RentalCars.Test;
+    using BookExperience.Core.Services.Genre;
+    using BookExperience.Core.Services.Book;
+    using BookExperience.Core.Services.Publisher;
+    using AutoMapper;
+    using BookExperience.Core.Extensions;
+    using BookExperience.Core.Models.Genres;
 
-    public class ApplicationUserTests
-    {
+    public class GenreServiceTests
+	{
         private ServiceProvider serviceProvider;
         private InMemoryDbContext dbContext;
         private ApplicationDbContext bookDb;
+        private IMapper mapper;
 
         [SetUp]
         public void Setup()
         {
             dbContext = new InMemoryDbContext();
             var serviceCollection = new ServiceCollection();
-
             serviceProvider = serviceCollection
-                .AddSingleton(sp => dbContext.CreateContext())
+            .AddSingleton(sp => dbContext.CreateContext())
                 .AddSingleton<IdentityDbContext<ApplicationUser>, ApplicationDbContext>()
-                .AddSingleton<IApplicationUserService, ApplicationUserService>()
+                .AddSingleton<IAuthorService, AuthorService>()
                 .BuildServiceProvider();
 
+            var myProfile = new MappingProfile();
+            var configuration = new MapperConfiguration(cfg => cfg.AddProfile(myProfile));
+            mapper = new Mapper(configuration);
 
             bookDb = serviceProvider.GetService<ApplicationDbContext>()!;
 
@@ -32,30 +41,71 @@
         }
 
         [Test]
-        public void ApplicationUserShouldBeNull()
+        public void FingGenreShouldReturnNull()
         {
             //Arrange
-            var fakeId = "fasfdasdakeId";
+            var fakeId = 12312;
 
             //Act
-            var service = new ApplicationUserService(bookDb);
-
+            var authorService = new AuthorService(bookDb);
+            var publisherService = new PublisherService(bookDb);
+            var bookingService = new BookService(bookDb, authorService, publisherService, mapper);
+            
+            var service = new GenreService(bookDb, bookingService);
 
             //Assert
-            Assert.That(service.FindApplicationUserById(fakeId), Is.Null);
+            Assert.That(service.FindGenre(fakeId), Is.Null);
         }
+
         [Test]
-        public void FindUserShouldReturnUser()
+        public void FingGenreShouldReturnGenre()
         {
             //Arrange
-            var fakeId = "iwaniwaniwaniwan";
+            var id = 99;
 
             //Act
-            var service = new ApplicationUserService(bookDb);
+            var authorService = new AuthorService(bookDb);
+            var publisherService = new PublisherService(bookDb);
+            var bookingService = new BookService(bookDb, authorService, publisherService, mapper);
 
+            var service = new GenreService(bookDb, bookingService);
 
             //Assert
-            Assert.That(service.FindApplicationUserById(fakeId), Is.Not.Null);
+            Assert.That(service.FindGenre(id), Is.Not.Null);
+        }
+
+        [Test]
+        public void GetBooksSortedByGenreShouldReturnNull()
+        {
+            //Arrange
+            var fakeId = 122;
+
+            //Act
+            var authorService = new AuthorService(bookDb);
+            var publisherService = new PublisherService(bookDb);
+            var bookingService = new BookService(bookDb, authorService, publisherService, mapper);
+
+            var service = new GenreService(bookDb, bookingService);
+
+            //Assert
+            Assert.That(service.GetBooksSortedByGenre(fakeId), Is.Null);
+        }
+
+        [Test]
+        public void GetBooksSortedByGenreShouldReturnCollection()
+        {
+            //Arrange
+            var fakeId = 99;
+
+            //Act
+            var authorService = new AuthorService(bookDb);
+            var publisherService = new PublisherService(bookDb);
+            var bookingService = new BookService(bookDb, authorService, publisherService, mapper);
+            
+            var service = new GenreService(bookDb, bookingService);
+
+            //Assert
+            Assert.That(service.GetBooksSortedByGenre(fakeId), Is.Not.Null);
         }
 
         [TearDown]
