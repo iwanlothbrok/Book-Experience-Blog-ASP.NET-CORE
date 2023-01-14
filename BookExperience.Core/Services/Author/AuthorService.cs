@@ -40,13 +40,12 @@
 
             foreach (var author in allAuthors)
             {
-                if (firstName == author.FirstName.ToLower() && lastName == author.LastName.ToLower())
+                if (firstName.ToLower() == author.FirstName.ToLower() && lastName.ToLower() == author.LastName.ToLower())
                 {
                     return author.Id;
                 }
             }
             return 0;
         }
-
     }
 }

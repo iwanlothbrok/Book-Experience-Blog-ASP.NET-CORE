@@ -1,28 +1,27 @@
-﻿namespace BookingExperience.Test.Services.ApplicationUser
+﻿namespace BookingExperience.Test.Services
 {
     using BookExperience.Core.Services.ApplicationUser;
+    using BookExperience.Core.Services.Author;
     using BookExperience.Infrastrucutre.Data;
     using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using RentalCars.Test;
 
-    public class ApplicationUserTests
+    public class AuthorServiceTests
     {
         private ServiceProvider serviceProvider;
         private InMemoryDbContext dbContext;
         private ApplicationDbContext bookDb;
-
         [SetUp]
         public void Setup()
         {
             dbContext = new InMemoryDbContext();
             var serviceCollection = new ServiceCollection();
-
             serviceProvider = serviceCollection
-                .AddSingleton(sp => dbContext.CreateContext())
+            .AddSingleton(sp => dbContext.CreateContext())
                 .AddSingleton<IdentityDbContext<ApplicationUser>, ApplicationDbContext>()
-                .AddSingleton<IApplicationUserService, ApplicationUserService>()
+                .AddSingleton<IAuthorService, AuthorService>()
                 .BuildServiceProvider();
 
 
@@ -32,30 +31,91 @@
         }
 
         [Test]
-        public void ApplicationUserShouldBeNull()
+        public void GetAuthorInfoShouldReturnNull()
         {
             //Arrange
-            var fakeId = "fasfdasdakeId";
+            var fakeId = 11231;
 
             //Act
-            var service = new ApplicationUserService(bookDb);
+            var service = new AuthorService(bookDb);
 
 
             //Assert
-            Assert.That(service.FindApplicationUserById(fakeId), Is.Null);
+            Assert.That(service.GetAuthorInfo(fakeId), Is.Null);
+        }
+
+        [Test]
+       public void GetAuthorInfoShouldReturnCorrectValue()
+        {
+            //Arrange
+            var fakeId = 99;
+
+            //Act
+            var service = new AuthorService(bookDb);
+
+
+            //Assert
+            Assert.That(service.GetAuthorInfo(fakeId), Is.Not.Null);
+        }
+
+        [Test]
+        public void CreateShouldReturnRowlingId()
+        {
+            //Arrange
+            string firstName = "J. K.";
+            string lastName = "Rowling";
+
+            //Act
+            var service = new AuthorService(bookDb);
+
+            //Assert
+            Assert.That(service.Create(firstName, lastName), Is.EqualTo(99));
+        }
+
+        [Test]
+        public void CreateShouldReturnAnyNumber()
+        {
+            //Arrange
+            string firstName = "fasas";
+            string lastName = "asd";
+
+            //Act
+            var service = new AuthorService(bookDb);
+
+            //Assert
+            Assert.That(service.Create(firstName, lastName), Is.Positive);
+        }
+        [Test]
+        public void DidAuthorExistsShouldReturnRowlingId()
+        {
+            //Arrange
+            string firstName = "J. K.";
+            string lastName = "Rowling";
+
+            //Act
+            var service = new AuthorService(bookDb);
+
+            //Assert
+            Assert.That(service.DidAuthorExists(firstName, lastName), Is.EqualTo(99));
         } 
         [Test]
-        public void FindUserShouldReturnUser()
+        public void DidAuthorExistsShouldReturnZero()
         {
             //Arrange
-            var fakeId = "iwaniwaniwaniwan";
+            string firstName = "fake";
+            string lastName = "fake";
 
             //Act
-            var service = new ApplicationUserService(bookDb);
-
+            var service = new AuthorService(bookDb);
 
             //Assert
-            Assert.That(service.FindApplicationUserById(fakeId), Is.Not.Null);
+            Assert.That(service.DidAuthorExists(firstName, lastName), Is.EqualTo(0));
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            dbContext.Dispose();
         }
         private void SeedDb()
         {
