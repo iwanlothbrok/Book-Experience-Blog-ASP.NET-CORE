@@ -41,9 +41,7 @@
 
             foreach (var publisher in publishers)
             {
-                publisher.Name.ToLower();
-
-                if (name == publisher.Name.ToLower())
+                if (name.ToLower() == publisher.Name.ToLower())
                 {
                     return publisher.Id;
                 }
