@@ -36,16 +36,6 @@
                     Name = c.Name
                 })
                 .ToList();
-        public bool AddUserInWanted(Book book, ApplicationUser user)
-        {
-            if (book.UsersThatWantedTheBook.Contains(user))
-            {
-                return false;
-            }
-            book.UsersThatWantedTheBook.Add(user);
-            this.data.SaveChanges();
-            return true;
-        }
 
         public IEnumerable<BookDetailsModel> GetLastThreeBooks()
         => this.data
@@ -61,25 +51,12 @@
            .ToList();
 
         public BookDetailsModel? GetDetailsForBookById(int id)
-       => this.data
+         => this.data
            .Books
            .Where(i => i.Id == id)
            .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
            .FirstOrDefault();
 
-        public BookFormModel? GetBookById(int id)
-        => this.data
-        .Books
-         .Where(c => c.Id == id)
-         .ProjectTo<BookFormModel>(this.mapper.ConfigurationProvider)
-         .FirstOrDefault();
-
-        public BookDetailsModel? Details(int id)
-               => this.data
-               .Books
-                .Where(c => c.Id == id)
-                .ProjectTo<BookDetailsModel>(this.mapper.ConfigurationProvider)
-                .FirstOrDefault();
         public IEnumerable<MineBooksModel> ByUser(string userId)
        => GetBooks(this.data
            .Books
@@ -92,7 +69,7 @@
           .ToList();
 
         public IEnumerable<string> AllTitles()
-    => this.data
+         => this.data
             .Books
             .Select(c => c.Title)
             .Distinct()
@@ -162,10 +139,6 @@
                 return 0;
             }
 
-            if (bookPhoto.Count <= 0)
-            {
-                return 0;
-            }
 
             book.Title = Title;
             book.BookPhoto = photo;

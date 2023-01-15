@@ -11,6 +11,7 @@
             //mapping for books
             this.CreateMap<Book, MineBooksModel>();
             this.CreateMap<Book, BookFormModel>();
+            this.CreateMap<BookFormModel, Book>();
             this.CreateMap<Book, BookDetailsModel>();
             this.CreateMap<BookDetailsModel, BookFormModel>();
         }

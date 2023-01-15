@@ -11,13 +11,10 @@
         Book? FindBook(int id);
         IEnumerable<Genres> AllGenres();
         IEnumerable<string> AllTitles();
-        BookDetailsModel? Details(int id);
-        BookFormModel? GetBookById(int id);
         BookDetailsModel? GetDetailsForBookById(int id);
         IEnumerable<BookDetailsModel> GetLastThreeBooks();
         IEnumerable<MineBooksModel> ByUser(string userId);
         IEnumerable<BookDetailsModel> GetAllBooksDetails();
-        bool AddUserInWanted(Book book, ApplicationUser user);
         IEnumerable<MineBooksModel> GetBooks(IQueryable<Book> bookQuery);
         BookQueryModel All(string title, string searchTerm, BookSorting sorting, int currentPage, int booksPerPage);
         Task<int> Edit(int id, string Title, IList<IFormFile> bookPhoto, string? Language, int GenresId, int Pages,

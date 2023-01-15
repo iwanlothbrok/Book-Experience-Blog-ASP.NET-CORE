@@ -78,7 +78,7 @@
         [AllowAnonymous]
         public IActionResult Details(int id)
         {
-            BookDetailsModel book = this.bookService.Details(id);
+            BookDetailsModel book = this.bookService.GetDetailsForBookById(id);
 
             if (this.ModelState.IsValid == false)
             {
@@ -93,7 +93,7 @@
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            BookDetailsModel? book = this.bookService.Details(id);
+            BookDetailsModel? book = this.bookService.GetDetailsForBookById(id);
             string userId = User.GetId();
             if (book.UserId != userId)
             {
@@ -159,7 +159,7 @@
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            BookDetailsModel? book = this.bookService.Details(id);
+            BookDetailsModel? book = this.bookService.GetDetailsForBookById(id);
             string userId = User.GetId();
             if (book.UserId != userId)
             {
