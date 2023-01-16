@@ -1,22 +1,53 @@
 # Booking Experience
-A simple ASP.NET Core MVC Web App which I created to exercise what I've learned from the ASP.NET Core course at SoftUni.
+My second ASP.Net Core Project. It is developed to follow the books I read, my progress with books, and to exchange book experiences with others.
 
 ## :information_source: How It Works
 
 **Guests**
-- Have access to home page for guests, all books page and book details page, also can see statistics. Can log in or register.
-
+- What can Guests do in the project?
+	- They can see the Home page. 	
+	- They can see the All Books page.	
+	- They can see the Details page. 	
+	- They can see the statistics. 	
+	- They can register and log in.	
+	- They can see books by Genre.
+	
 **Users**
-- Have access to all books page,book details page, statistics of their reading experience, and my books page where they can see the books which they read and also can recommend books.
-
+- What can Users do in the project?
+	- They can see the Home page. 	
+	- They can see the All Cars page.	
+	- They can see the Details page. 	
+	- They can see the statistics. 	
+	- They can register and log in.	
+	- They can add new books.	
+	- They can edit their books.	
+	- They can delete their books.	
+	- They can see their books.	
+	- They can add books to wanted books.
+	- They can see books by Genre.
 
 **When you run the project for the first time sample data will be seeded as well as these test accounts:**
+- Users
+	- User 1 -> email: **user1@abv.bg** / password: **User.1**
+	- User 2 -> email: **user2@abv.bg** / password: **User.2**
 
-- User 1 -> email: **user1@abv.bg** / password: **User.1**
-- User 2 -> email: **user2@abv.bg** / password: **User.2**
-- All Genres will be uploaded.
-
-**[Here](https://imgur.com/a/Dndr8Tr) is a screenshot of the project's database diagram**
+- Genres
+	- All Genres will be uploaded.
+	
+- Publishers
+	- Ciela.
+	- Libri.
+	
+- Authors
+	- J. K. Rowling.
+	- Paulo Coelho.
+	
+-Books
+	-Harry Potter and the Philosopher's Stone -> by User 1.	
+	-Harry Potter and the Chamber of Secrets -> by User 1.	
+	-The Alchemist -> by User 2.
+	
+**[Here](https://imgur.com/a/LcR67Ik) is a screenshot of the project's database diagram**
 
 ## :hammer_and_pick: Built With
 - ASP.NET Core 6
@@ -45,6 +76,3 @@ A simple ASP.NET Core MVC Web App which I created to exercise what I've learned 
 
 This project is licensed under the [MIT License](LICENSE).
 
-___
-**This project is made only for educational purposes!**
-___
