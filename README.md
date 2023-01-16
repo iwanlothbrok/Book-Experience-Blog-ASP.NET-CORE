@@ -42,10 +42,10 @@ My second ASP.Net Core Project. It is developed to follow the books I read, my p
 	- J. K. Rowling.
 	- Paulo Coelho.
 	
--Books
-	-Harry Potter and the Philosopher's Stone -> by User 1.	
-	-Harry Potter and the Chamber of Secrets -> by User 1.	
-	-The Alchemist -> by User 2.
+- Books
+	- Harry Potter and the Philosopher's Stone -> by User 1.	
+	- Harry Potter and the Chamber of Secrets -> by User 1.	
+	- The Alchemist -> by User 2.
 	
 **[Here](https://imgur.com/a/LcR67Ik) is a screenshot of the project's database diagram**
 
