@@ -82,4 +82,30 @@
 
 <partial name="_BooksPartialView" model="@Model.Books" />
 
+<div class="row">
+	<div class="col-12 text-center">
+		<button class="btn btn-primary" id="statistics-button">Show Statistics</button>
+	</div>
+</div>
 
+<div class="jumbotron d-none" id="statistics">
+	<div class="row">
+		<h2 class="col-md-4 text-center" id="total-books"></h2>
+		<h2 class="col-md-4 text-center" id="total-genres"></h2>
+		<h2 class="col-md-4 text-center" id="total-pages"></h2>
+	</div>
+</div>
+
+@section Scripts {
+	<script>
+		$('#statistics-button').on('click', ev => {
+			$.get('/api/statistics', (data) => {
+				$('#total-books').text(data.totalBooksReaded + " Books");
+				$('#total-genres').text(data.totalGenresReaded + " Genres");
+				$('#total-pages').text(data.totalPagesReaded + " Total Pages");
+				$('#statistics').removeClass('d-none');
+				$('#statistics-button').hide();
+			});
+		});
+	</script>
+}
