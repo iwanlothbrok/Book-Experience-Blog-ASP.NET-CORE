@@ -1,5 +1,8 @@
-﻿@inject SignInManager<ApplicationUser> SignInManager
+﻿@using BookExperience.Core.Services.Author
+@inject SignInManager<ApplicationUser> SignInManager
 @using static BookExperience.Infrastrucutre.Data.DataConstants;
+@inject IAuthorService authorService;
+
 
 <!DOCTYPE html>
 <!--
@@ -58,6 +61,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					  	 <a asp-controller="Genre" asp-action="FilteredByGenres" asp-route-id="@HorrorId" class="btn btn-light">Horror</a>
 					  	 <a asp-controller="Genre" asp-action="FilteredByGenres" asp-route-id="@HumourAndSatireId" class="btn btn-light">Humour And Satire</a>
 					  	 <a asp-controller="Genre" asp-action="FilteredByGenres" asp-route-id="@PhilosophyId" class="btn btn-light">Philosophy</a>
+				  </div>
+				</div>
+				</div>
+				<div class="dropdown">
+				  <div class="dropdown">
+				  <button class="dropbtn">Authors</button>
+				  <div class="dropdown-content">
+						@{
+							var authors = this.authorService.GetAllAuthors();
+							foreach (var author in authors)
+							{
+						  	 <a asp-controller="Book" asp-action="GetAuthorBooks" asp-route-id="@author.Id" class="btn btn-light">@author.FirstName @author.LastName</a>
+							}
+					 }
+
 				  </div>
 				</div>
 				</div>

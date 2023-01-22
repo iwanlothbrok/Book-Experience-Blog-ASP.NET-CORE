@@ -76,6 +76,13 @@
             .OrderBy(br => br)
             .ToList();
 
+        public List<MineBooksModel> GetBooksByAuthorId(int id)
+       => this.data
+            .Books
+            .Where(c => c.AuthorId == id)
+            .ProjectTo<MineBooksModel>(this.mapper.ConfigurationProvider)
+            .ToList();
+
         public bool Delete(int id)
         {
             Book? bookData = FindBook(id);

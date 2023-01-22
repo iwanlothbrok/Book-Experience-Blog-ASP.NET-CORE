@@ -3,6 +3,7 @@
     using AutoMapper;
     using BookExperience.Core.Extensions;
     using BookExperience.Core.Models.Books;
+    using BookExperience.Core.Services.Author;
     using BookExperience.Core.Services.Book;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@
     {
         private readonly IBookService bookService;
         private readonly IMapper mapper;
-        public BookController(IBookService bookService, IMapper mapper)
+        private readonly IAuthorService authorService;
+        public BookController(IBookService bookService, IMapper mapper, IAuthorService authorService)
         {
             this.bookService = bookService;
             this.mapper = mapper;
+            this.authorService = authorService;
         }
 
         [HttpGet]
@@ -179,5 +182,15 @@
 
             return RedirectToAction(nameof(Mine));
         }
+
+        public IActionResult GetAuthorBooks(int id)
+        {
+            IEnumerable<MineBooksModel> books = this.bookService
+                .GetBooksByAuthorId(id)
+                .ToList();
+
+            return View(books);
+        }
+
     }
 }

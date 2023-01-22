@@ -1,20 +1,19 @@
 ﻿namespace BookingExperience.Test.Services
 {
+    using AutoMapper;
+    using BookExperience.Core.Extensions;
     using BookExperience.Core.Services.Author;
-    using BookExperience.Infrastrucutre.Data.Models;
+    using BookExperience.Core.Services.Book;
+    using BookExperience.Core.Services.Genre;
+    using BookExperience.Core.Services.Publisher;
     using BookExperience.Infrastrucutre.Data;
+    using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using RentalCars.Test;
-    using BookExperience.Core.Services.Genre;
-    using BookExperience.Core.Services.Book;
-    using BookExperience.Core.Services.Publisher;
-    using AutoMapper;
-    using BookExperience.Core.Extensions;
-    using BookExperience.Core.Models.Genres;
 
     public class GenreServiceTests
-	{
+    {
         private ServiceProvider serviceProvider;
         private InMemoryDbContext dbContext;
         private ApplicationDbContext bookDb;
@@ -50,7 +49,7 @@
             var authorService = new AuthorService(bookDb);
             var publisherService = new PublisherService(bookDb);
             var bookingService = new BookService(bookDb, authorService, publisherService, mapper);
-            
+
             var service = new GenreService(bookDb, bookingService);
 
             //Assert
@@ -101,7 +100,7 @@
             var authorService = new AuthorService(bookDb);
             var publisherService = new PublisherService(bookDb);
             var bookingService = new BookService(bookDb, authorService, publisherService, mapper);
-            
+
             var service = new GenreService(bookDb, bookingService);
 
             //Assert

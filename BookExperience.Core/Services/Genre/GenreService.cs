@@ -1,6 +1,5 @@
 ﻿namespace BookExperience.Core.Services.Genre
 {
-    using AutoMapper;
     using BookExperience.Core.Models.Genres;
     using BookExperience.Core.Services.Book;
     using BookExperience.Infrastrucutre.Data;

@@ -1,6 +1,5 @@
 ﻿namespace BookingExperience.Test.Services
 {
-    using BookExperience.Core.Services.Author;
     using BookExperience.Core.Services.Publisher;
     using BookExperience.Infrastrucutre.Data;
     using BookExperience.Infrastrucutre.Data.Models;
@@ -83,7 +82,7 @@
             //Assert
             Assert.That(service.Create(name), Is.Positive);
         }
-        
+
         [TearDown]
         public void TearDown()
         {

@@ -10,10 +10,10 @@
         private readonly DbContextOptions<ApplicationDbContext> dbContextOptions;
 
         public InMemoryDbContext()
-        {            
+        {
             connection = new SqliteConnection("Filename=:memory:");
             connection.Open();
-            
+
 
             dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseSqlite(connection)

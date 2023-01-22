@@ -64,8 +64,8 @@
             var fakeBookId = 0;
             var notFakeBookId = 1;
 
-          
-            var notFakeUserId= "iwaniwaniwaniwan";
+
+            var notFakeUserId = "iwaniwaniwaniwan";
 
             //Act
             var service = new WantedBooksService(bookDb);
@@ -74,7 +74,7 @@
             Assert.That(service.AddWantedBooks(fakeBookId, notFakeUserId), Is.EqualTo(false));
             Assert.That(service.AddWantedBooks(notFakeBookId, null), Is.EqualTo(false));
         }
-        
+
         [Test]
         public void AddWantedBooksShouldReturnTrue()
         {
@@ -90,33 +90,33 @@
         }
 
         [Test]
-       public void DoesBookIsWantedByUserShouldReturnFalse()
+        public void DoesBookIsWantedByUserShouldReturnFalse()
         {
             //Arrange
             var notFakeBookId = 4;
-            var notFakeUserId= "iwaniwaniwaniwan";
+            var notFakeUserId = "iwaniwaniwaniwan";
 
             //Act
             var service = new WantedBooksService(bookDb);
 
             //Assert
             Assert.That(service.DoesBookIsWantedByUser(notFakeBookId, notFakeUserId), Is.EqualTo(false));
-        } 
-       
+        }
+
         [Test]
         public void DoesBookIsWantedByUserShouldReturnTrue()
         {
             //Arrange
             var notFakeBookId = 2;
-            var notFakeUserId= "iwaniwaniwaniwan";
+            var notFakeUserId = "iwaniwaniwaniwan";
 
             //Act
             var service = new WantedBooksService(bookDb);
 
             //Assert
             Assert.That(service.DoesBookIsWantedByUser(notFakeBookId, notFakeUserId), Is.EqualTo(true));
-        } 
-        
+        }
+
         [Test]
         public void RemoveWantedBookShouldReturnCorrectAnswers()
         {
@@ -214,7 +214,7 @@
             {
                 Id = 1,
                 BookId = book2.Id,
-                ApplicationUserId= customer.Id,
+                ApplicationUserId = customer.Id,
             };
             bookDb.Users.AddRange(user, customer);
             bookDb.Genres.Add(genre);

@@ -47,5 +47,12 @@
             }
             return 0;
         }
+
+        public List<Author> GetAllAuthors()
+        => this.data
+            .Authors
+            .OrderBy(n => n.FirstName)
+            .ThenBy(l => l.LastName)
+            .ToList();
     }
 }

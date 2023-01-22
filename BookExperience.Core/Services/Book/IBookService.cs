@@ -12,6 +12,7 @@
         IEnumerable<Genres> AllGenres();
         IEnumerable<string> AllTitles();
         BookDetailsModel? GetDetailsForBookById(int id);
+        List<MineBooksModel> GetBooksByAuthorId(int id);
         IEnumerable<BookDetailsModel> GetLastThreeBooks();
         IEnumerable<MineBooksModel> ByUser(string userId);
         IEnumerable<BookDetailsModel> GetAllBooksDetails();

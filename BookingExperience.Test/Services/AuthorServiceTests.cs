@@ -1,6 +1,5 @@
 ﻿namespace BookingExperience.Test.Services
 {
-    using BookExperience.Core.Services.ApplicationUser;
     using BookExperience.Core.Services.Author;
     using BookExperience.Infrastrucutre.Data;
     using BookExperience.Infrastrucutre.Data.Models;
@@ -45,7 +44,7 @@
         }
 
         [Test]
-       public void GetAuthorInfoShouldReturnCorrectValue()
+        public void GetAuthorInfoShouldReturnCorrectValue()
         {
             //Arrange
             var fakeId = 99;
@@ -97,7 +96,7 @@
 
             //Assert
             Assert.That(service.DidAuthorExists(firstName, lastName), Is.EqualTo(99));
-        } 
+        }
         [Test]
         public void DidAuthorExistsShouldReturnZero()
         {

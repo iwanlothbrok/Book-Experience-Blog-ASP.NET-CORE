@@ -5,7 +5,6 @@
     using BookExperience.Core.Services.Author;
     using BookExperience.Core.Services.Book;
     using BookExperience.Core.Services.Publisher;
-    using BookExperience.Core.Services.WantedBooks;
     using BookExperience.Infrastrucutre.Data;
     using BookExperience.Infrastrucutre.Data.Models;
     using Microsoft.AspNetCore.Http;
@@ -144,7 +143,7 @@
 
             //Assert
             Assert.That(service.GetDetailsForBookById(fakeId), Is.Null);
-        } 
+        }
         [Test]
         public void ByUserShouldReturnNull()
         {
@@ -158,7 +157,7 @@
 
             //Assert
             Assert.That(service.ByUser(fakeId), Is.Empty);
-        } 
+        }
         [Test]
         public void ByUserShouldReturnCorrectBooks()
         {
@@ -216,7 +215,7 @@
 
             //Assert
             Assert.That(service.Delete(fakeBookId), Is.True);
-        } 
+        }
         [Test]
         public async Task EditShouldReturnZero()
         {
@@ -246,7 +245,7 @@
             var service = new BookService(bookDb, authorService, publisher, mapper);
 
             //Assert
-            Assert.That(await service.Create("harry o", "aa", "asda", "asda", CarPhoto, "as", 99, 123, true, "asda",null), Is.Zero);
+            Assert.That(await service.Create("harry o", "aa", "asda", "asda", CarPhoto, "as", 99, 123, true, "asda", null), Is.Zero);
         }
 
         [TearDown]

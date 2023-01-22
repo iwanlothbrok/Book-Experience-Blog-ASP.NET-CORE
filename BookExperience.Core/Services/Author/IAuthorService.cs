@@ -4,6 +4,7 @@
 
     public interface IAuthorService
     {
+        List<Author> GetAllAuthors();
         Author? GetAuthorInfo(int id);
         int Create(string firstName, string lastName);
         int DidAuthorExists(string firstName, string lastName);
